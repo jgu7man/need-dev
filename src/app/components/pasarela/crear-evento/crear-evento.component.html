@@ -1,0 +1,68 @@
+<div class="container contenido grey darken-4">
+    <div class="row">
+        <div class="col s12">
+            <p class="titleLabel center ltxt">
+                CREAR EVENTO
+            </p>
+        </div>
+    </div>
+
+    <div class="row formulario">
+        <form #evenForm="ngForm" action="#" method="POST" id="evenForm" (ngSubmit)="onSubmit()" onsubmit="return false">
+
+            <!-- FECHA Y HORA -->
+
+            <div class="row">
+                <div class="col s6">
+                    <label for="dateInicio">Inicia el día:</label>
+                    <input type="date" name="dateInicio" id="dateInicio" [(ngModel)]="datos.dateInicio" #dateInicio="ngModel">
+                </div>
+                <div class="col s6">
+                    <label for="timeInicio">...a las:</label>
+                    <input type="time" name="timeInicio" id="timeInicio" [(ngModel)]="datos.timeInicio" #timeInicio="ngModel">
+                </div>
+                <div class="col s6">
+                    <label for="dateFinal">Termina el día:</label>
+                    <input type="date" name="dateFinal" id="dateFinal" [(ngModel)]="datos.dateFinal" #dateFinal="ngModel">
+                </div>
+                <div class="col s6">
+                    <label for="timeFinal">...a las:</label>
+                    <input type="time" name="timeFinal" id="timeFinal" [(ngModel)]="datos.timeFinal" #timeFinal="ngModel">
+                </div>
+
+            </div>
+
+            <!-- LUGAR  -->
+
+            <div class="row">
+                <div class="col s12 input-field">
+                    <input type="text" name="lugar" id="lugar" [(ngModel)]="datos.lugar" #lugar="ngModel" placeholder="Nombre del lugar">
+                    <label for="lugar">Lugar</label>
+                </div>
+                <div class="col s12 input-field">
+                    <input type="text" placeholder="Calle y número" name="direccion" id="direccion" [(ngModel)]="datos.direccion" #direccion="ngModel">
+                    <label for="direccion">Dirección</label>
+                </div>
+                <div class="col s12 input-field">
+                    <input type="text" name="colonia" id="colonia" [(ngModel)]="datos.colonia" #colonia="ngModel">
+                    <label for="colonia">Colonia</label>
+                </div>
+                <div class="col s12 input-fueld">
+                    <input type="text" name="ciudad" id="ciudad" [(ngModel)]="datos.ciudad" #ciudad="ngModel">
+                    <label for="ciudad">Ciudad</label>
+                </div>
+                <div class="col s12 input-field">
+                    <input type="text" name="estado" id="estado" [(ngModel)]="datos.estado" #estado="ngModel">
+                    <label for="estado">Estado</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12">
+                    <input type="submit" value="Registrar" class="needbtn">
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
