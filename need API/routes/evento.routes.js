@@ -7,6 +7,7 @@ var evento = require('./evento.controller');
 ruta.post('/saveServicio', evento.saveServicio);
 ruta.post('/saveEvento', evento.saveEvento);
 ruta.post('/saveDatos', evento.saveDatos);
+ruta.get('/getEventos', evento.getEventos);
 
 
 
