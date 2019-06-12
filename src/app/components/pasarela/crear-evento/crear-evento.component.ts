@@ -37,7 +37,7 @@ settings = {
     ) {
     this.datos = new DatosEvento('','','', '', '', '', '', '', '','');
     this.servicio = new ServicioModel( '', '', '', {});
-    this.evento = new EventoModel('', '', '', '', '', '');
+    this.evento = new EventoModel('', '', '', '', '', '', '');
   }
 
   ngOnInit() {

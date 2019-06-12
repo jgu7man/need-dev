@@ -6,6 +6,7 @@ export class EventoModel {
         public tipoEvento: any ,
         public personas: any ,
         public calidad: any ,
-        public costo: any
+        public costo: any,
+        public estado: string,
     ){}
 }

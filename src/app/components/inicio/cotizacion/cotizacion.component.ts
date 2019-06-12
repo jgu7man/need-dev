@@ -31,7 +31,7 @@ export class CotizacionComponent implements OnInit {
     private _Router: Router,
   ) {
     this.servicio = new ServicioModel( '', 0, 0, []);
-    this.evento = new EventoModel('', '', 0, 0, 0, 0);
+    this.evento = new EventoModel('', '', 0, 0, 0, 0, '');
     this.extras = new ExtrasModel(0, 0, 0, 0, 0);
     this.usuario = new UsuarioModel('', '', '', '');
    }

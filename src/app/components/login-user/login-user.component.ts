@@ -24,7 +24,7 @@ export class LoginUserComponent implements OnInit {
     private _Route: ActivatedRoute,
     private _Router: Router
   ) { 
-    this.evento = new EventoModel('', '', 0, 0, 0, 0)
+    this.evento = new EventoModel('', '', 0, 0, 0, 0, '')
    }
 
   ngOnInit() {
