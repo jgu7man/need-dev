@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UsuarioModel } from '../models/usuario.model';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UrlApi } from "../log/url-api";
 
 @Injectable()
 export class UsuarioService {
@@ -23,7 +24,7 @@ export class UsuarioService {
         let params = JSON.stringify(usuario);
         // console.log(params);
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this._http.post('http://localhost:3800/social-login', params, {headers: headers});
+        return this._http.post(UrlApi.heroku+'social-login', params, {headers: headers});
     }
 
     login(){

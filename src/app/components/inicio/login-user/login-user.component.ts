@@ -64,14 +64,14 @@ export class LoginUserComponent implements OnInit {
         this.usuario.nombre = response.data.nombre;
         this.usuario.email = response.data.email;
         this.usuario.avatar = response.data.avatar;
-        this.evento.usuario = this.usuario.userId;
         localStorage.setItem( "login", JSON.stringify(this.usuario));
       },
       error => {
         console.log(<any>error);
       }
       )
-      localStorage.setItem(this.idEvento+'evento', JSON.stringify(this.evento));
+      
+      
       
       this.reload();
 
@@ -81,22 +81,29 @@ export class LoginUserComponent implements OnInit {
     var url = window.location.href;
     var id = this.idEvento
     var router = this._Router
+    if ( url.includes(id) ){
+      var user = JSON.parse(localStorage.getItem('login'))
+      this.evento.usuario = user.userId;
+      localStorage.setItem(this.idEvento+'evento', JSON.stringify(this.evento));
+      
+    }
     
     function reloadCrear(){
       router.navigate(['crear-evento/'+id])
     }
 
     function reloadPerfil(){
-      router.navigate(["perfil/"]); 
+      router.navigate(["/usuario/perfil/"]); 
     }
     
     setTimeout(
       function redirigir()  {
         var loged = localStorage.getItem('login');
-        console.log(loged);
+        
         if (loged == null) {
           console.log('aun no se logea');
         } else if ( url.includes(id) ){
+          
           console.log('se creará evento');
           reloadCrear();
         } else {

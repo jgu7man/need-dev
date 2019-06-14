@@ -2,7 +2,7 @@ export class EventoModel {
 
     constructor(
         public id: string,
-        public usuario: string,
+        public usuario: any,
         public tipoEvento: any ,
         public personas: any ,
         public calidad: any ,

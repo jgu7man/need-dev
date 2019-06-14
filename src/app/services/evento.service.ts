@@ -4,6 +4,7 @@ import { EventoModel } from '../models/evento/evento.model';
 import { Observable } from 'rxjs/observable';
 import { ServicioModel } from '../models/evento/servicio.model';
 import { DatosEvento } from '../models/evento/datosevento.model';
+import { UrlApi } from "../log/url-api";
 
 
 @Injectable()

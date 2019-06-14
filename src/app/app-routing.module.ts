@@ -15,6 +15,7 @@ import { DatosComponent } from './components/user/tus-eventos/datos/datos.compon
 import { DetallesComponent } from './components/user/tus-eventos/detalles/detalles.component';
 import { DataComponent } from './components/user/tus-eventos/data/data.component';
 import { PersonalComponent } from './components/user/tus-eventos/personal/personal.component';
+import { PerfilComponent } from './components/user/perfil/perfil.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent},
@@ -33,7 +34,8 @@ const routes: Routes = [
       {path: 'data', component: DataComponent},
       {path: 'personal', component: PersonalComponent},
     ]},
-    {path: 'tus-eventos', component: TusEventosComponent }
+    {path: 'tus-eventos', component: TusEventosComponent },
+    { path: 'perfil', component: PerfilComponent}
   ]}
 
 ];

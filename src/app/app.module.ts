@@ -48,6 +48,7 @@ import { DatosComponent } from './components/user/tus-eventos/datos/datos.compon
 import { DataComponent } from './components/user/tus-eventos/data/data.component';
 import { PersonalComponent } from './components/user/tus-eventos/personal/personal.component';
 import { DetallesComponent } from './components/user/tus-eventos/detalles/detalles.component';
+import { PerfilComponent } from './components/user/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { DetallesComponent } from './components/user/tus-eventos/detalles/detall
     DatosComponent,
     DataComponent,
     PersonalComponent,
-    DetallesComponent
+    DetallesComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
