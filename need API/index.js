@@ -2,9 +2,7 @@
 
 var express = require('express');
 var app = express();
-app.listen(3800, () => {
-    console.log('Corriendo servidor en http://localhost:3800');
-});
+const port = process.env.PORT || 3800;
 
 // BODY PARSER
 var bodyParser = require('body-parser');
@@ -26,3 +24,7 @@ app.use('/', login);
 
 var evento = require('./routes/evento.routes');
 app.use('/', evento);
+
+app.listen(port, () => {
+    console.log(`Corriendo servidor en http://localhost:${port}`);
+});
