@@ -88,11 +88,8 @@ import { PerfilComponent } from './components/user/perfil/perfil.component';
     IgxTimePickerModule,
     // SocialLoginModule,
     LoginModule,
-    AngularFireModule.initializeApp({
-      credential: environment.firebase,
-      databaseURL: "https://need-f6bad.firebaseio.com"}),
-    AngularFireDatabaseModule,
-    AngularFirestoreModule,
+    // AngularFireDatabaseModule,
+    // AngularFirestoreModule,
   ],
   providers: [
     FirebaseService,
