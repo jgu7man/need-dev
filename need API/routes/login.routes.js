@@ -13,22 +13,21 @@ ruta.post('/social-login', (req, res) => {
             var num = snapshot.size;
             if (num == 0) {
                 fs.collection('usuarios').doc().set({
-                        nombre: nombre,
-                        email: email,
-                        avatar: avatar,
-                    })
-                    .then(() => {
-                        fs.collection('usuarios').where('email', '==', email).get()
-                            .then(snapshot => {
-                                snapshot.forEach(doc => {
-                                    return res.status(200).send({
-                                        message: 'Usuario guardado',
-                                        id: doc.id,
-                                        data: doc.data(),
-                                    });
-                                });
+                    nombre: nombre,
+                    email: email,
+                    avatar: avatar,
+                });
+                fs.collection('usuarios').where('email', '==', email).get()
+                    .then(snapshot => {
+                        snapshot.forEach(doc => {
+                            return res.status(200).send({
+                                message: 'Usuario guardado',
+                                id: doc.id,
+                                data: doc.data(),
                             });
+                        });
                     });
+
             } else {
                 snapshot.forEach(doc => {
                     return res.status(200).send({
