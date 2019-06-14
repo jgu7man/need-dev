@@ -37,7 +37,7 @@ settings = {
     ) {
     this.datos = new DatosEvento('','','', '', '', '', '', '', '','');
     this.servicio = new ServicioModel( '', '', '', {});
-    this.evento = new EventoModel('', '', '', '', '', '', '');
+    this.evento = new EventoModel('', '', '', '', '', '', '','');
   }
 
   ngOnInit() {
@@ -61,7 +61,9 @@ settings = {
   onSubmit(){
 
     this.datos.id = this.idEvento;
+    this.datos.dateInicio = this.evento.fecha;
     localStorage.setItem(this.idEvento+'datos', JSON.stringify(this.datos));
+    localStorage.setItem(this.idEvento+'evento', JSON.stringify(this.evento));
     
     this._Evento.postEvento(this.evento).subscribe(
       response => { console.log(response);},

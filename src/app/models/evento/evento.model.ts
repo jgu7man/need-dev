@@ -8,5 +8,6 @@ export class EventoModel {
         public calidad: any ,
         public costo: any,
         public estado: string,
+        public fecha: string,
     ){}
 }

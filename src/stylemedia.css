@@ -42,4 +42,8 @@
         position: relative;
         /* top: 1em; */
     }
+    .contenido {
+        padding-bottom: 5em;
+        padding-top: 5em;
+    }
 }

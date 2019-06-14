@@ -25,18 +25,29 @@ import { EventoService } from './services/evento.service';
 
 // COMPONENTS
 import { AppComponent } from './app.component';
+// NAVBAR
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { DirComponent } from './components/navbar/dir/dir.component';
 import { HomeComponent } from './components/navbar/home/home.component';
 import { MenuComponent } from './components/navbar/menu/menu.component';
-import { UserComponent } from './components/navbar/user/user.component';
-import { DirComponent } from './components/navbar/dir/dir.component';
 import { RegComponent } from './components/navbar/reg/reg.component';
-import { HeroformComponent } from './components/inicio/heroform/heroform.component';
-import { CrearEventoComponent } from './components/pasarela/crear-evento/crear-evento.component';
-import { InicioComponent } from './components/inicio/inicio.component';
+import { UserComponent } from './components/navbar/user/user.component';
+// FOOTER
 import { FooterComponent } from './components/footer/footer.component';
+// Pasarela de inicio
+import { HeroformComponent } from './components/inicio/heroform/heroform.component';
 import { CotizacionComponent } from './components/inicio/cotizacion/cotizacion.component';
-import { LoginUserComponent } from './components/login-user/login-user.component';
+import { CrearEventoComponent } from './components/inicio/crear-evento/crear-evento.component';
+import { LoginUserComponent } from './components/inicio/login-user/login-user.component';
+// Sección usuario
+import { InicioComponent } from './components/inicio/inicio.component';
+import { TusEventosComponent } from './components/user/tus-eventos/tus-eventos.component';
+import { EventoCreadoComponent } from './components/notificaciones/evento-creado/evento-creado.component';
+import { UsuarioComponent } from './components/user/user.component';
+import { DatosComponent } from './components/user/tus-eventos/datos/datos.component';
+import { DataComponent } from './components/user/tus-eventos/data/data.component';
+import { PersonalComponent } from './components/user/tus-eventos/personal/personal.component';
+import { DetallesComponent } from './components/user/tus-eventos/detalles/detalles.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +63,14 @@ import { LoginUserComponent } from './components/login-user/login-user.component
     InicioComponent,
     FooterComponent,
     CotizacionComponent,
-    LoginUserComponent
+    LoginUserComponent,
+    TusEventosComponent,
+    EventoCreadoComponent,
+    UsuarioComponent,
+    DatosComponent,
+    DataComponent,
+    PersonalComponent,
+    DetallesComponent
   ],
   imports: [
     BrowserModule,

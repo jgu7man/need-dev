@@ -12,22 +12,41 @@ export class EventoService {
 
     postEvento( evento: EventoModel): Observable<any> {
         let params = JSON.stringify(evento);
-        console.log(params)
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
         return this._http.post('http://localhost:3800/saveEvento', params, {headers: headers});
     }
 
     postServicio( servicio: ServicioModel): Observable<any> {
         let params = JSON.stringify(servicio);
-        console.log(params)
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
         return this._http.post('http://localhost:3800/saveServicio', params, {headers: headers});
     }
 
     postDatos( Datos: DatosEvento): Observable<any> {
         let params = JSON.stringify(Datos);
-        console.log(params)
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
         return this._http.post('http://localhost:3800/saveDatos', params, {headers: headers});
     }
+
+    getEventos( userId: string ): Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this._http.get('http://localhost:3800/getEventos/'+userId, {headers: headers});
+    }
+
+    getEventoSolo( id: string ):Observable<any>{
+        
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this._http.get('http://localhost:3800/eventoSolo/'+id, {headers: headers});
+    }
+
+    getDatosEvento( id: string ):Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this._http.get('http://localhost:3800/datosEvento/'+id, {headers: headers});
+    }
+
+    getServicioEvento( id: string ):Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this._http.get('http://localhost:3800/servicioEvento/'+id, {headers: headers});
+    }
+
 }

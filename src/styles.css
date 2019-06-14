@@ -144,6 +144,19 @@ label {
 
 /* DISEÑO DE ELEMENTOS */
 
+.megaIcono {
+    width: 60%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.megaIcono img {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .needbtn {
     background: #6C009C;
     color: #e3e3e3;
@@ -185,7 +198,7 @@ select {
 
 .contenido {
     padding-bottom: 5em;
-    padding-top: 5em;
+    padding-top: 2.5em;
 }
 
 .formPage {
@@ -244,6 +257,7 @@ form .row {
     text-align: center;
     color: #e3e3e3;
     cursor: pointer;
+    /* margin: 0 25%; */
 }
 
 .itemIcon {
@@ -259,6 +273,11 @@ form .row {
 
 .homeLegend {
     display: none;
+}
+
+.back {
+    font-size: 2em;
+    padding: 0 1em;
 }
 
 
@@ -317,4 +336,8 @@ form .row {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.masInfo {
+    display: block !important;
 }

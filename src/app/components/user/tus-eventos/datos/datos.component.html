@@ -1,0 +1,33 @@
+<div class="container contenido">
+    <div class="col s12 black-text back" [routerLink]="['../../tus-eventos']">
+        <i class="fas fa-arrow-circle-left"></i>
+    </div>
+    <div class="row">
+        <div class="col s12 center">
+            <p class="titleLabel ltxt">
+                EVENTO
+            </p>
+            <br>
+            <span></span>
+        </div>
+    </div>
+
+    <div class="container detalles">
+        <div class="row menu">
+            <div class="col s4 center ico activated" [routerLink]="['./detalles']" routerLinkActive="activated">
+                <i class="fas fa-cocktail "></i><br>
+                <p>EVENTO</p>
+            </div>
+            <div class="col s4 center ico" [routerLink]="['./data']" routerLinkActive="activated">
+                <i class="fas fa-book-reader"></i><br>
+                <p>LUGAR Y FECHA</p>
+            </div>
+            <div class="col s4 center ico" [routerLink]="['./personal']" routerLinkActive="activated">
+                <i class="fas fa-user-tie"></i><br>
+                <p>PERSONAL</p>
+            </div>
+        </div>
+
+        <router-outlet></router-outlet>
+    </div>
+</div>

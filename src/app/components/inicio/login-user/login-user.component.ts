@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService, SocialUser, GoogleLoginProvider, FacebookLoginProvider } from "ng4-social-login";
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { UsuarioModel } from "../../models/usuario.model";
-import { UsuarioService } from '../../services/usuario.service';
+import { UsuarioModel } from "src/app/models/usuario.model";
+import { UsuarioService } from 'src/app/services/usuario.service';
 import { EventoModel } from 'src/app/models/evento/evento.model';
 
 @Component({
@@ -24,7 +24,7 @@ export class LoginUserComponent implements OnInit {
     private _Route: ActivatedRoute,
     private _Router: Router
   ) { 
-    this.evento = new EventoModel('', '', 0, 0, 0, 0, '')
+    this.evento = new EventoModel('', '', 0, 0, 0, 0, '','')
    }
 
   ngOnInit() {
