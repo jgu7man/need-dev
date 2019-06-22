@@ -46,7 +46,7 @@
     "minireset.css": "~0.0.4",
     "ng-pick-datetime": "^7.0.0",
     "ng4-social-login": "^1.4.2",
-    "rxjs": "~6.3.3",
+    "rxjs": "^6.3.3",
     "rxjs-compat": "^6.4.0",
     "tslib": "^1.9.0",
     "web-animations-js": "^2.3.1",
