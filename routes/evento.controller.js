@@ -9,6 +9,8 @@ var evento = {
         var personas = req.body.personas;
         var calidad = req.body.calidad;
         var costo = req.body.costo;
+        var estado = req.body.estado;
+        var fecha = req.body.fecha;
         fs.collection('eventos').doc(id).set({
                 id: id,
                 usuario: usuario,
@@ -16,6 +18,8 @@ var evento = {
                 personas: personas,
                 calidad: calidad,
                 costo: costo,
+                estado: estado,
+                fecha: fecha
             })
             .then(() => {
                 return res.status(200).send({
@@ -89,18 +93,65 @@ var evento = {
     },
 
     getEventos: (req, res) => {
+        var userId = req.params.userId;
+        if (userId == null) return res.status(404).send({ message: 'no hay id' });
         fs.collection('eventos')
-            .where('usuario', '==', 'FwgXvooJTsZ2gubvL3VW').get()
+            .where('usuario', '==', userId).get()
             .then(snapshot => {
                 var eventos = [];
                 snapshot.forEach(doc => {
-                    eventos.push({
-                        id: doc.id,
-                        evento: doc.data(),
-                    });
+                    eventos.push(doc.data());
                 });
                 return res.status(200).send(eventos);
             });
+    },
+
+    getEventoSolo: (req, res) => {
+        var id = req.params.id;
+        if (id == null) return res.status(404).send({ message: 'no hay id' });
+
+        fs.collection('eventos').doc(id).get()
+            .then(doc => {
+                if (!doc.exists) {
+                    return res.status(200).send({
+                        message: 'No se encontró evento'
+                    });
+                } else {
+                    return res.status(200).send(doc.data());
+                }
+            })
+    },
+
+    getDatos: (req, res) => {
+        var id = req.params.id;
+        if (id == null) { return res.status(404).send({ message: 'no hay id' }); }
+
+        fs.collection('datosEventos').doc(id).get()
+            .then(doc => {
+                if (!doc.exists) {
+                    return res.status(200).send({
+                        message: 'No se encontró evento'
+                    });
+                } else {
+                    return res.status(200).send(doc.data());
+                }
+            })
+    },
+
+    getServicio: (req, res) => {
+        var id = req.params.id;
+        if (id == null) { return res.status(404).send({ message: 'no hay id' }); }
+
+        fs.collection('servicios').doc(id).get()
+            .then(doc => {
+                if (!doc.exists) {
+                    return res.status(200).send({
+                        message: 'No se encontró evento'
+                    });
+                } else {
+                    return res.status(200).send(doc.data());
+                }
+            })
     }
 };
 
