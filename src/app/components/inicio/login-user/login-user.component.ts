@@ -65,16 +65,13 @@ export class LoginUserComponent implements OnInit {
         this.usuario.email = response.data.email;
         this.usuario.avatar = response.data.avatar;
         localStorage.setItem( "login", JSON.stringify(this.usuario));
+        this.reload();
       },
       error => {
         console.log(<any>error);
+        this.reload();
       }
       )
-      
-      
-      
-      this.reload();
-
   }
 
   reload(){
