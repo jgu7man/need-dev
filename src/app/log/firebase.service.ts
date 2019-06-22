@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from "angularfire2/firestore";
 import { UsuarioModel } from "../models/usuario.model";
-import { Observable } from "rxjs/observable";
+import { Observable } from "rxjs";
 
 interface usuario {
   name: string,
