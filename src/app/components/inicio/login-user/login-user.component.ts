@@ -42,22 +42,22 @@ export class LoginUserComponent implements OnInit {
     });
   }
 
-  goLogin(){
-    this._socialAuth.signIn(GoogleLoginProvider.PROVIDER_ID)
+  async goLogin(){
+    await this._socialAuth.signIn(GoogleLoginProvider.PROVIDER_ID)
       .then((userData) => {
         this.user = userData;
         this.login();
       })
   }
 
-  login() {
+  async login() {
     var nombre = this.user.name;
     var email = this.user.email;
     var avatar = this.user.photoUrl;
     
     this.usuario = new UsuarioModel('', email, nombre, avatar);
 
-    this._usuario.registrar(this.usuario).subscribe(
+    await this._usuario.registrar(this.usuario).subscribe(
       response => {
         console.log(response)
         this.usuario.userId = response.id;
