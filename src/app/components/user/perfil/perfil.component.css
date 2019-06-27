@@ -1,0 +1,69 @@
+#datosUsuario {
+    background: url('../../../../assets/img/profileBg.png');
+    background-size: cover;
+    padding: 3em 3em 0em;
+    position: relative;
+    top: -3em;
+    height: 10em;
+    box-shadow: inset 0 -3px 4px rgba(0, 0, 0, 0.5)
+}
+
+#fotoPerfil {
+    height: 100px;
+    width: 100px;
+    position: relative;
+    margin: auto;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#fotoPerfil img {
+    height: 100%;
+    position: relative;
+    margin: auto;
+}
+
+#datosUsuario .col {
+    position: relative;
+    color: #ccc;
+    top: 3em;
+}
+
+#datos {
+    text-align: center;
+    margin-top: .5em;
+}
+
+#nombre {
+    color: gold;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+#rating {
+    color: #ccc;
+}
+
+#rating .col {
+    margin-top: 1em;
+}
+
+.number {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+#finanzas {
+    color: #ccc;
+    padding: 2em;
+}
+
+@media screen and (min-width: 500px) {
+    #rating {
+        width: 30%;
+    }
+    #finanzas {
+        width: 50%;
+    }
+}

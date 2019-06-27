@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventoService } from '../../../services/evento.service';
 import { EventoModel } from '../../../models/evento/evento.model';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-
+declare var $;
 @Component({
   selector: 'app-evento-creado',
   templateUrl: './evento-creado.component.html',
@@ -22,6 +22,7 @@ export class EventoCreadoComponent implements OnInit {
    }
 
   ngOnInit() {
+    $(".contenido").scrollTop(0);
     this._Route.params.subscribe((params: Params) => {
       this.idEvento = params.idEvento;
     })

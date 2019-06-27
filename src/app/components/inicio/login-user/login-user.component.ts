@@ -5,6 +5,7 @@ import { UsuarioModel } from "src/app/models/usuario.model";
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { EventoModel } from 'src/app/models/evento/evento.model';
 
+declare var $;
 @Component({
   selector: 'app-login-user',
   templateUrl: './login-user.component.html',
@@ -43,6 +44,7 @@ export class LoginUserComponent implements OnInit {
   }
 
   async goLogin(){
+    $("#cargando").fadeToggle()
     await this._socialAuth.signIn(GoogleLoginProvider.PROVIDER_ID)
       .then((userData) => {
         this.user = userData;
@@ -75,6 +77,8 @@ export class LoginUserComponent implements OnInit {
   }
 
   reload(){
+    $("#cargando").fadeToggle()
+    
     var url = window.location.href;
     var id = this.idEvento
     var router = this._Router
@@ -86,11 +90,13 @@ export class LoginUserComponent implements OnInit {
     }
     
     function reloadCrear(){
-      router.navigate(['crear-evento/'+id])
+      window.location.href = 'crear-evento'
+      // router.navigate(['crear-evento/'+id])
     }
 
     function reloadPerfil(){
-      router.navigate(["/usuario/perfil/"]); 
+      window.location.href = '/usuario/perfil/';
+      // router.navigate(["/usuario/perfil/"]); 
     }
     
     setTimeout(

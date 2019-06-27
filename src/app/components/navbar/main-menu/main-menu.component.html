@@ -1,0 +1,35 @@
+<div class="overlay">
+
+    <div id="mainMenu">
+
+        <div class="row areaLogo">
+            <div class="col s12 center">
+                <div class="logo">
+                    <img src="../../../assets/img/logos/logo256.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div id="areaLinks">
+            <div class="col s12 right">
+                <p class="Link" *ngIf="uneteLink">
+                    Únete al equipo NEED
+                </p>
+                <p class="Link" *ngIf="provLink">
+                    Publica tus servicios
+                </p>
+                <p class="Link" *ngIf="conocenosLink">
+                    Conócenos
+                </p>
+                <p class="Link" *ngIf="preciosLink">
+                    Precios
+                </p>
+                <p class="Link" *ngIf="cerrarLink" (click)="cerrarSesion()">
+                    Cerrar Sesión
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>

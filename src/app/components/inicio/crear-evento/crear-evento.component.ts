@@ -41,6 +41,7 @@ settings = {
   }
 
   ngOnInit() {
+    $(".contenido").scrollTop(0);
     this._Route.params.subscribe((params: Params) => {
       this.idEvento = params.idEvento;
       var evento = params.idEvento+'evento';
@@ -58,28 +59,31 @@ settings = {
     console.log(this.evento, this.servicio);
   }
 
-  onSubmit(){
+  async onSubmit(){
 
     this.datos.id = this.idEvento;
     this.datos.dateInicio = this.evento.fecha;
     localStorage.setItem(this.idEvento+'datos', JSON.stringify(this.datos));
     localStorage.setItem(this.idEvento+'evento', JSON.stringify(this.evento));
     
-    this._Evento.postEvento(this.evento).subscribe(
+    await this._Evento.postEvento(this.evento).subscribe(
       response => { console.log(response);},
       error => { console.log(<any>error);}
     );
     
-    this._Evento.postDatos(this.datos).subscribe(
+    await this._Evento.postDatos(this.datos).subscribe(
       response => { console.log(response); },
       error => { console.log(<any>error); }
     );
 
 
-    this._Evento.postServicio(this.servicio).subscribe(
+    await this._Evento.postServicio(this.servicio).subscribe(
       response => {console.log(response);},
       error => {console.log(<any>error);}
     );
+
+    this._Router.navigate(['evento-creado/'+this.idEvento])
+
   }
 
 

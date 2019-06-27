@@ -1,3 +1,50 @@
-<p>
-  perfil works!
-</p>
+<div class="contenido">
+
+    <div class="row" id="datosUsuario">
+        <div class="col s12 center">
+            <div id="fotoPerfil">
+                <img src="{{usuario.avatar}}" alt="">
+            </div>
+        </div>
+        <div class="col s12" id="datos">
+            <ul>
+                <li id="nombre">{{usuario.nombre}}</li>
+                <li id="email">{{usuario.email}}</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row" id="rating">
+        <div class="col s6 center">
+            <span class="number">12</span><br>
+            <span class="dato">Eventos</span>
+        </div>
+        <div class="col s6 center">
+            <span class="number">21</span><br>
+            <span class="dato">Votos</span>
+        </div>
+    </div>
+
+    <div class="container" id="finanzas">
+        <div class="row">
+            <h5 class="col s12 sub center">
+                FORMAS DE PAGO
+            </h5>
+            <div class="row" id="formaPago">
+                <div class="col s3 metodo">
+                    VISA
+                </div>
+                <div class="col s9">
+                    <span class="titular">
+                JORGE GUZMAN
+              </span><br>
+                    <span>
+                **** **** **** 1234 
+              </span>
+                </div>
+            </div>
+        </div>
+        <p class="needbtn center" style="width: 50%">Agregar</p>
+    </div>
+
+</div>

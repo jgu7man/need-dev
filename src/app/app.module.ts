@@ -9,9 +9,8 @@ import { IgxCalendarModule, IgxTimePickerModule, IgxDatePickerModule } from 'ign
 import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from "./log/login.module";
 // import { Fire } from "firebase-admin";
-import { AngularFireModule } from "angularfire2";
-import { AngularFireDatabaseModule } from "angularfire2/database";
-import { AngularFirestoreModule } from "angularfire2/firestore";
+import { AngularFireModule } from "@angular/fire";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { environment } from "../environments/environment";
 
 
@@ -27,11 +26,7 @@ import { EventoService } from './services/evento.service';
 import { AppComponent } from './app.component';
 // NAVBAR
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { DirComponent } from './components/navbar/dir/dir.component';
-import { HomeComponent } from './components/navbar/home/home.component';
-import { MenuComponent } from './components/navbar/menu/menu.component';
-import { RegComponent } from './components/navbar/reg/reg.component';
-import { UserComponent } from './components/navbar/user/user.component';
+import { MainMenuComponent } from './components/navbar/main-menu/main-menu.component';
 // FOOTER
 import { FooterComponent } from './components/footer/footer.component';
 // Pasarela de inicio
@@ -49,16 +44,15 @@ import { DataComponent } from './components/user/tus-eventos/data/data.component
 import { PersonalComponent } from './components/user/tus-eventos/personal/personal.component';
 import { DetallesComponent } from './components/user/tus-eventos/detalles/detalles.component';
 import { PerfilComponent } from './components/user/perfil/perfil.component';
+import { NuevoEventoComponent } from './components/user/nuevo-evento/nuevo-evento.component';
+
+import { DirectorioComponent } from './components/directorio/directorio.component';
+import { CategoriaComponent } from './components/directorio/categoria/categoria.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent,
-    MenuComponent,
-    UserComponent,
-    DirComponent,
-    RegComponent,
     HeroformComponent,
     CrearEventoComponent,
     InicioComponent,
@@ -72,7 +66,12 @@ import { PerfilComponent } from './components/user/perfil/perfil.component';
     DataComponent,
     PersonalComponent,
     DetallesComponent,
-    PerfilComponent
+    PerfilComponent,
+    DirectorioComponent,
+    MainMenuComponent,
+    NuevoEventoComponent,
+    CategoriaComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -88,8 +87,8 @@ import { PerfilComponent } from './components/user/perfil/perfil.component';
     IgxTimePickerModule,
     // SocialLoginModule,
     LoginModule,
-    // AngularFireDatabaseModule,
-    // AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
   ],
   providers: [
     FirebaseService,

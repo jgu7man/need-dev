@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _ruta: Router
+  ) { }
 
   ngOnInit() {
+    var loged = JSON.parse(localStorage.getItem('login'));
+    if (loged != null){
+      this._ruta.navigate(['/usuario/perfil'])
+    }
   }
 
   onSubmit(){
