@@ -18,6 +18,7 @@ export class LoginUserComponent implements OnInit {
   public usuario: UsuarioModel;
   public evento: EventoModel;
   public idEvento: any;
+  public plan: any
 
   constructor(
     private _socialAuth: AuthService,
@@ -28,9 +29,14 @@ export class LoginUserComponent implements OnInit {
     this.evento = new EventoModel('', '', 0, 0, 0, 0, '','')
    }
 
-  ngOnInit() {
-    this._Route.params.subscribe((params: Params) => {
-      this.idEvento = params.idEvento;
+  async ngOnInit() {
+     this._Route.params.subscribe((params: Params) => {
+      var prop = params.hasOwnProperty('idEvento');
+     if (prop == true) {
+        this.idEvento = params.idEvento;
+      }else{
+        this.plan = params.plan
+      }
       var evento = params.idEvento+'evento';
       this.evento = JSON.parse(localStorage.getItem(evento));
   })}
@@ -43,9 +49,9 @@ export class LoginUserComponent implements OnInit {
     });
   }
 
-  async goLogin(){
+  goLogin(){
     $("#cargando").fadeToggle()
-    await this._socialAuth.signIn(GoogleLoginProvider.PROVIDER_ID)
+   this._socialAuth.signIn(GoogleLoginProvider.PROVIDER_ID)
       .then((userData) => {
         this.user = userData;
         this.login();
@@ -80,7 +86,9 @@ export class LoginUserComponent implements OnInit {
     $("#cargando").fadeToggle()
     
     var url = window.location.href;
-    var id = this.idEvento
+    var id = this.idEvento;
+    var plan = this.plan
+    console.log(url);
     var router = this._Router
     if ( url.includes(id) ){
       var user = JSON.parse(localStorage.getItem('login'))
@@ -98,6 +106,10 @@ export class LoginUserComponent implements OnInit {
       window.location.href = '/usuario/perfil/';
       // router.navigate(["/usuario/perfil/"]); 
     }
+
+    function reloadPagar(){
+      window.location.href = '/directorio/pagarPlan/'+plan
+    }
     
     setTimeout(
       function redirigir()  {
@@ -105,8 +117,12 @@ export class LoginUserComponent implements OnInit {
         
         if (loged == null) {
           console.log('aun no se logea');
-        } else if ( url.includes(id) ){
+        } else if (url.includes('pagar')){
           
+          reloadPagar();
+          console.log('pagar plan');
+        }
+        else if ( url.includes(id) ){
           console.log('se creará evento');
           reloadCrear();
         } else {

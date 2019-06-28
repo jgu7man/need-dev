@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+declare var $: any
 
 @Component({
   selector: 'app-main-menu',
@@ -12,7 +14,10 @@ export class MainMenuComponent implements OnInit {
   public conocenosLink: boolean = true;
   public preciosLink: boolean = true;
   public cerrarLink: boolean = true;
-  constructor() { }
+  @Output() cerrarMenu = new EventEmitter();
+  constructor(
+    private _ruta: Router
+  ) { }
 
   ngOnInit() {
     var loged = JSON.parse(localStorage.getItem('login'));
@@ -29,4 +34,10 @@ export class MainMenuComponent implements OnInit {
 
   }
 
+  toggleMenu(){
+    $("#menu").toggleClass('opened')
+    $("#close").toggle();
+    this.cerrarMenu.emit(false)
+    this._ruta.navigate(['/directorio/bienvenida'])
+  }
 }

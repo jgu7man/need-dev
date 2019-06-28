@@ -15,7 +15,7 @@
                 <p class="Link" *ngIf="uneteLink">
                     Únete al equipo NEED
                 </p>
-                <p class="Link" *ngIf="provLink">
+                <p class="Link" *ngIf="provLink" (click)="toggleMenu()">
                     Publica tus servicios
                 </p>
                 <p class="Link" *ngIf="conocenosLink">

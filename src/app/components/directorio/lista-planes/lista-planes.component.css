@@ -1,0 +1,15 @@
+#planes {
+    overflow: auto;
+    height: 65vh;
+}
+
+.plan {
+    color: #ccc;
+    position: relative;
+    margin: .75em auto;
+    box-shadow: 2px 2px 9px rgba(0, 0, 0, 0.9);
+    padding: 1.5em;
+    width: 90% !important;
+    left: 50% !important;
+    transform: translateX(-50%);
+}

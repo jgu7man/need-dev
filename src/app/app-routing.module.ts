@@ -19,12 +19,17 @@ import { PerfilComponent } from './components/user/perfil/perfil.component';
 import { DirectorioComponent } from './components/directorio/directorio.component';
 import { NuevoEventoComponent } from './components/user/nuevo-evento/nuevo-evento.component';
 import { CategoriaComponent } from './components/directorio/categoria/categoria.component';
+import { CategoriasComponent } from './components/directorio/all-catego/categorias.component';
+import { SuscribirComponent } from './components/directorio/suscribir/suscribir.component';
+import { NegBienvenidaComponent } from './components/directorio/neg-bienvenida/neg-bienvenida.component';
+import { PagarPlanComponent } from './components/directorio/pagar-plan/pagar-plan.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent, data:{nav: 1}},
   // Pasarela de inicio
   { path: 'login', component: LoginUserComponent },
   { path: 'login/:idEvento', component: LoginUserComponent },
+  { path: 'login/pagar/:plan', component: LoginUserComponent },
   { path: 'cotizacion', component: CotizacionComponent },
   { path: 'cotizacion/:idEvento', component: CotizacionComponent },
   { path: 'crear-evento/:idEvento', component: CrearEventoComponent },
@@ -42,8 +47,13 @@ const routes: Routes = [
     { path: 'perfil', component: PerfilComponent, data: {nav: 3}},
     { path: 'nuevo-evento', component: NuevoEventoComponent}
   ]},
-  { path: 'directorio', component: DirectorioComponent, data: {nav: 4} },
-  { path: 'categoria/:name', component: CategoriaComponent},
+  { path: 'directorio', component: DirectorioComponent, data: {nav: 4}, children: [
+    { path: 'bienvenida', component: NegBienvenidaComponent},
+    { path: 'categorias', component: CategoriasComponent},
+    { path: 'categoria/:name', component: CategoriaComponent},
+    { path: 'suscripcion', component: SuscribirComponent},
+    { path: 'pagarPlan/:plan', component: PagarPlanComponent},
+  ] },
 
 ];
 

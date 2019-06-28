@@ -34,10 +34,17 @@ export class NavbarComponent implements OnInit {
     window.innerWidth;
   }
 
-  async toggleMenu(){
-    await $("#menu").toggleClass('opened')
+  toggleMenu(){
+    $("#menu").toggleClass('opened')
     $("#close").toggle()
   }
+
+  cerrarMenu(e){
+    console.log(e);
+    this.menu = e
+  }
+
+  
 
   
 
