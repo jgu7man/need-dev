@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 // import { AuthService, SocialUser, GoogleLoginProvider, FacebookLoginProvider } from "ng4-social-login";
 import { AuthService } from "../../../shared/services/auth.service";
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { UsuarioModel } from "src/app/models/usuario.model";
-import { UsuarioService } from 'src/app/services/usuario.service';
-import { EventoModel } from 'src/app/models/evento/evento.model';
+import { UsuarioModel } from "../../../models/usuario.model";
+import { UsuarioService } from '../../../services/usuario.service';
+import { EventoModel } from '../../../models/evento/evento.model';
 
 declare var $;
 @Component({

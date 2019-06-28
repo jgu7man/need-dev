@@ -20,10 +20,14 @@ import { DirectorioComponent } from './components/directorio/directorio.componen
 import { NuevoEventoComponent } from './components/user/nuevo-evento/nuevo-evento.component';
 import { CategoriaComponent } from './components/directorio/categoria/categoria.component';
 
+// Import canActivate guard services
+import { AuthGuard } from "./shared/guard/auth.guard";
+import { SecureInnerPagesGuard } from "./shared/guard/secure-inner-pages.guard";
+
 const routes: Routes = [
   { path: '', component: InicioComponent, data:{nav: 1}},
   // Pasarela de inicio
-  { path: 'login', component: LoginUserComponent },
+  { path: 'login', component: LoginUserComponent, canActivate:[SecureInnerPagesGuard] },
   { path: 'login/:idEvento', component: LoginUserComponent },
   { path: 'cotizacion', component: CotizacionComponent },
   { path: 'cotizacion/:idEvento', component: CotizacionComponent },
@@ -39,7 +43,7 @@ const routes: Routes = [
       {path: 'personal', component: PersonalComponent},
     ]},
     { path: 'tus-eventos', component: TusEventosComponent, data: {nav: 2} },
-    { path: 'perfil', component: PerfilComponent, data: {nav: 3}},
+    { path: 'perfil', component: PerfilComponent, data: {nav: 3}, canActivate:[AuthGuard]},
     { path: 'nuevo-evento', component: NuevoEventoComponent}
   ]},
   { path: 'directorio', component: DirectorioComponent, data: {nav: 4} },

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AuthService } from "../../../shared/services/auth.service";
 @Component({
   selector: 'app-main-menu',
   templateUrl: './main-menu.component.html',
@@ -12,10 +12,11 @@ export class MainMenuComponent implements OnInit {
   public conocenosLink: boolean = true;
   public preciosLink: boolean = true;
   public cerrarLink: boolean = true;
-  constructor() { }
+  
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
-    var loged = JSON.parse(localStorage.getItem('login'));
+    var loged = JSON.parse(localStorage.getItem('usuario'));
     if (loged == null ) {
       this.cerrarLink = false
     } else {
@@ -23,10 +24,9 @@ export class MainMenuComponent implements OnInit {
     }
   }
 
-  async cerrarSesion(){
-    await localStorage.removeItem("login");
+  cerrarSesion(){
+    localStorage.removeItem("login");
     window.location.href = '/'
-
   }
 
 }

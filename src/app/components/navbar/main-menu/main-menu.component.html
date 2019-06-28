@@ -24,7 +24,7 @@
                 <p class="Link" *ngIf="preciosLink">
                     Precios
                 </p>
-                <p class="Link" *ngIf="cerrarLink" (click)="cerrarSesion()">
+                <p class="Link" *ngIf="cerrarLink" (click)="authService.SignOut()">
                     Cerrar Sesión
                 </p>
             </div>
