@@ -8,15 +8,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxCalendarModule, IgxTimePickerModule, IgxDatePickerModule } from 'igniteui-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from "./log/login.module";
-// import { Fire } from "firebase-admin";
+import {HttpClientModule, HttpBackend} from '@angular/common/http';
+//firebase services
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from "../environments/environment";
-
-
 
 // SERVICIOS
 import { FirebaseService } from "./log/firebase.service";
+import { AuthService } from './shared/services/auth.service';
 import { UsuarioService } from './services/usuario.service';
 import { EventoService } from './services/evento.service';
 // import { EventoService } from "./services/evento.service";
@@ -88,10 +89,13 @@ import { CategoriaComponent } from './components/directorio/categoria/categoria.
     // SocialLoginModule,
     LoginModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
     AngularFirestoreModule,
+    HttpClientModule
   ],
   providers: [
-    FirebaseService,
+    // FirebaseService,
+    AuthService,
     UsuarioService,
     EventoService
     // {provide: AuthServiceConfig, useFactory: provideConfig}

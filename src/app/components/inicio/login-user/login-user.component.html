@@ -10,10 +10,10 @@
         <div class="row loginCont valign-wrapper ">
             <div class="col s12 ">
                 <ul class="">
-                    <li (click)="fbLogin()">
+                    <li (click)="goLogin()">
                         <button class="fbLogin loginbtn">Facebook</button>
                     </li>
-                    <li (click)="goLogin()">
+                    <li (click)="authService.GoogleAuth()">
                         <button class="goLogin loginbtn">Google</button>
                     </li>
                 </ul>
