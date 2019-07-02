@@ -1,25 +1,19 @@
-var fs = require('../firestore');
+var fb = require('../firebase');
 
 var evento = {
 
     saveEvento: (req, res) => {
         var id = req.body.id;
-        var usuario = req.body.usuario;
-        var tipoEvento = req.body.tipoEvento;
-        var personas = req.body.personas;
-        var calidad = req.body.calidad;
-        var costo = req.body.costo;
-        var estado = req.body.estado;
-        var fecha = req.body.fecha;
-        fs.collection('eventos').doc(id).set({
-                id: id,
-                usuario: usuario,
-                tipoEvento: tipoEvento,
-                personas: personas,
-                calidad: calidad,
-                costo: costo,
-                estado: estado,
-                fecha: fecha
+
+        fb.firestore().collection('eventos').doc(id).set({
+                id: req.body.id,
+                usuario: req.body.usuario,
+                tipoEvento: req.body.tipoEvento,
+                personas: req.body.personas,
+                calidad: req.body.calidad,
+                costo: req.body.costo,
+                estado: req.body.estado,
+                fecha: req.body.fecha
             })
             .then(() => {
                 return res.status(200).send({
@@ -35,14 +29,12 @@ var evento = {
 
     saveServicio: (req, res) => {
         var id = req.body.id;
-        var meseros = req.body.meseros;
-        var jefe = req.body.jefeMeseros;
-        var extras = req.body.extras;
-        fs.collection('servicios').doc(id).set({
-                id: id,
-                meseros: meseros,
-                jefeMeseros: jefe,
-                extras: extras,
+
+        fb.firestore().collection('servicios').doc(id).set({
+                id: req.body.id,
+                meseros: req.body.meseros,
+                jefeMeseros: req.body.jefe,
+                extras: req.body.extras,
             })
             .then(() => {
                 return res.status(200).send({
@@ -59,26 +51,18 @@ var evento = {
 
     saveDatos: (req, res) => {
         var id = req.body.id;
-        var dateInicio = req.body.dateInicio;
-        var dateFinal = req.body.dateFinal;
-        var timeInicio = req.body.timeInicio;
-        var timeFinal = req.body.timeFinal;
-        var lugar = req.body.lugar;
-        var direccion = req.body.direccion;
-        var colonia = req.body.colonia;
-        var ciudad = req.body.ciudad;
-        var estado = req.body.estado;
-        fs.collection('datosEventos').doc(id).set({
-                id: id,
-                dateInicio: dateInicio,
-                dateFinal: dateFinal,
-                timeInicio: timeInicio,
-                timeFinal: timeFinal,
-                lugar: lugar,
-                direccion: direccion,
-                colonia: colonia,
-                ciudad: ciudad,
-                estado: estado,
+
+        fb.firestore().collection('datosEventos').doc(id).set({
+                id: req.body.id,
+                dateInicio: req.body.dateInicio,
+                dateFinal: req.body.dateFinal,
+                timeInicio: req.body.timeInicio,
+                timeFinal: req.body.timeFinal,
+                lugar: req.body.lugar,
+                direccion: req.body.direccion,
+                colonia: req.body.colonia,
+                ciudad: req.body.ciudad,
+                estado: req.body.estado,
             })
             .then(() => {
                 return res.status(200).send({
@@ -95,7 +79,7 @@ var evento = {
     getEventos: (req, res) => {
         var userId = req.params.userId;
         if (userId == null) return res.status(404).send({ message: 'no hay id' });
-        fs.collection('eventos')
+        fb.firestore().collection('eventos')
             .where('usuario', '==', userId).get()
             .then(snapshot => {
                 var eventos = [];
@@ -110,7 +94,7 @@ var evento = {
         var id = req.params.id;
         if (id == null) return res.status(404).send({ message: 'no hay id' });
 
-        fs.collection('eventos').doc(id).get()
+        fb.firestore().collection('eventos').doc(id).get()
             .then(doc => {
                 if (!doc.exists) {
                     return res.status(200).send({
@@ -126,7 +110,7 @@ var evento = {
         var id = req.params.id;
         if (id == null) { return res.status(404).send({ message: 'no hay id' }); }
 
-        fs.collection('datosEventos').doc(id).get()
+        fb.firestore().collection('datosEventos').doc(id).get()
             .then(doc => {
                 if (!doc.exists) {
                     return res.status(200).send({
@@ -142,7 +126,7 @@ var evento = {
         var id = req.params.id;
         if (id == null) { return res.status(404).send({ message: 'no hay id' }); }
 
-        fs.collection('servicios').doc(id).get()
+        fb.firestore().collection('servicios').doc(id).get()
             .then(doc => {
                 if (!doc.exists) {
                     return res.status(200).send({

@@ -4,5 +4,5 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://need-f6bad.firebaseio.com"
 });
-var fs = admin.firestore();
-module.exports = fs;
+var fb = admin;
+module.exports = fb;

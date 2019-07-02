@@ -2,17 +2,17 @@
 
 var express = require('express');
 var ruta = express.Router();
-var fs = require('../firestore');
+var fb = require('../firebase');
 
-ruta.post('/social-login',async (req, res) => {
+ruta.post('/social-login', async(req, res) => {
     var nombre = req.body.nombre;
     var email = req.body.email;
     var avatar = req.body.avatar;
-    await fs.collection('usuarios').where('email', '==', email).get()
+    await fb.firestore.collection('usuarios').where('email', '==', email).get()
         .then(async snapshot => {
             var num = snapshot.size;
             if (num == 0) {
-               await fs.collection('usuarios').add({
+                await fb.firestore.collection('usuarios').add({
                     nombre: nombre,
                     email: email,
                     avatar: avatar,
@@ -22,8 +22,8 @@ ruta.post('/social-login',async (req, res) => {
                         id: ref.id,
                         data: ref.data(),
                     });
-                  });
-                // fs.collection('usuarios').where('email', '==', email).get()
+                });
+                // fb.firestore.collection('usuarios').where('email', '==', email).get()
                 //     .then(snapshot => {
                 //         snapshot.forEach(doc => {
                 //             return res.status(200).send({
