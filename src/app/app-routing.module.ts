@@ -23,10 +23,14 @@ import { CategoriasComponent } from './components/directorio/all-catego/categori
 import { SuscribirComponent } from './components/directorio/suscribir/suscribir.component';
 import { NegBienvenidaComponent } from './components/directorio/neg-bienvenida/neg-bienvenida.component';
 import { PagarPlanComponent } from './components/directorio/pagar-plan/pagar-plan.component';
+import { NegocioComponent } from './components/negocio/negocio.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { EditNegocioComponent } from './components/negocio/edit-negocio/edit-negocio.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent, data:{nav: 1}},
   // Pasarela de inicio
+  { path: 'loading', component: LoadingComponent },  
   { path: 'login', component: LoginUserComponent },
   { path: 'login/:idEvento', component: LoginUserComponent },
   { path: 'login/pagar/:plan', component: LoginUserComponent },
@@ -45,7 +49,9 @@ const routes: Routes = [
     ]},
     { path: 'tus-eventos', component: TusEventosComponent, data: {nav: 2} },
     { path: 'perfil', component: PerfilComponent, data: {nav: 3}},
-    { path: 'nuevo-evento', component: NuevoEventoComponent}
+    { path: 'nuevo-evento', component: NuevoEventoComponent},
+    { path: 'negocio/:neg', component: NegocioComponent },
+    { path: 'edit-negocio/:neg', component: EditNegocioComponent },
   ]},
   { path: 'directorio', component: DirectorioComponent, data: {nav: 4}, children: [
     { path: 'bienvenida', component: NegBienvenidaComponent},

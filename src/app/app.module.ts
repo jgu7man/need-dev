@@ -58,6 +58,10 @@ import { NegBienvenidaComponent } from './components/directorio/neg-bienvenida/n
 import { ListaPlanesComponent } from './components/directorio/lista-planes/lista-planes.component';
 import { PagarPlanComponent } from './components/directorio/pagar-plan/pagar-plan.component';
 import { PagoFormComponent } from './components/pago-form/pago-form.component';
+import { NegocioComponent } from './components/negocio/negocio.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { FormNegocioComponent } from './components/negocio/form-negocio/form-negocio.component';
+import { EditNegocioComponent } from './components/negocio/edit-negocio/edit-negocio.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +93,10 @@ import { PagoFormComponent } from './components/pago-form/pago-form.component';
     ListaPlanesComponent,
     PagarPlanComponent,
     PagoFormComponent,
+    NegocioComponent,
+    LoadingComponent,
+    FormNegocioComponent,
+    EditNegocioComponent,
     
   ],
   imports: [

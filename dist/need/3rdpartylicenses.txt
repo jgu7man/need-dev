@@ -37,6 +37,8 @@ MIT
 
 @angular/fire/firestore
 
+@angular/fire/storage
+
 @angular/forms
 MIT
 
@@ -53,6 +55,9 @@ Apache-2.0
 Apache-2.0
 
 @firebase/logger
+Apache-2.0
+
+@firebase/storage
 Apache-2.0
 
 @firebase/util
@@ -144,6 +149,8 @@ THE SOFTWARE.
 firebase/app
 
 firebase/firestore
+
+firebase/storage
 
 igniteui-angular
 Apache-2.0

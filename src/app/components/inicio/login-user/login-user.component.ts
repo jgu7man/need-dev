@@ -98,7 +98,7 @@ export class LoginUserComponent implements OnInit {
     }
     
     function reloadCrear(){
-      window.location.href = 'crear-evento'
+      window.location.href = 'crear-evento/'+id
       // router.navigate(['crear-evento/'+id])
     }
 

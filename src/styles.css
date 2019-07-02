@@ -210,9 +210,12 @@ select {
 }
 
 .overlay {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    position: fixed;
+    transition: all .3s
 }
 
 .fileneedbtn {
@@ -246,6 +249,12 @@ select {
     top: 50%;
     transform: translate(-50%, -50%);
     height: 100%;
+    background-color: #fff;
+}
+
+app-loading {
+    position: absolute;
+    z-index: 10;
 }
 
 
@@ -404,4 +413,55 @@ form .row {
 
 .categoName {
     z-index: 0;
+}
+
+.rowMenu {
+    color: #e3e3e3;
+    background: #000;
+    padding: 1em;
+    border-radius: 1em;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .5);
+    position: relative;
+    top: -3em;
+}
+
+.ico:focus {
+    outline-color: unset !important;
+}
+
+.ico p {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, .5);
+}
+
+.ico i {
+    font-size: 2em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, .5);
+}
+
+.container.detalles {
+    background: #202020;
+    min-width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translatex(-50%);
+    padding: 0 2em 5em;
+}
+
+
+/* NEGOCIO FORM */
+
+#categoria {
+    background: none;
+    width: 93%;
+    left: 4%;
+    position: relative;
+    color: #ccc
+}
+
+option:disabled {
+    color: #ccc !important
+}
+
+option {
+    background: #202020;
 }
