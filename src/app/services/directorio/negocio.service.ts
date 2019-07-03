@@ -33,6 +33,8 @@ export class NegocioService {
         return this.http.get(UrlApi.local+'getNegocio/'+idNegocio,  {headers: headers});
     }
 
+    
+
     makeFileRequest(url: string, params: Array<string>, files: Array<File>, name: string){
         return new Promise( (resolve, reject) => {
             var formData:any = new FormData();
@@ -69,8 +71,18 @@ export class NegocioService {
         return this.http.get(UrlApi.local+'get-ratings/'+id, {headers: headers});
     }
 
-    rater(id: string, rate: string): Observable<any> {
+    rater(id: string, rater: string): Observable<any> {
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this.http.post(UrlApi.local+'rate/'+id+'/'+rate, {headers: headers});
+        return this.http.get(UrlApi.local+'get-rater/'+id+'/'+rater, {headers: headers});
+    }
+
+    comentar(id: string, comentario: string): Observable<any> {
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this.http.post(UrlApi.local+'comentar/'+id+'/'+comentario, {headers: headers});
+    }
+
+    getComentarios(id: string): Observable<any> {
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this.http.get(UrlApi.local+'getComentarios/'+id, {headers: headers});
     }
 }

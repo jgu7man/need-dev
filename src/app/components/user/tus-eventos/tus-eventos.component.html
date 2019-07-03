@@ -1,11 +1,13 @@
-<div class="container contenido">
-    <div class="row">
-        <div class="col s12">
-            <p class="titleLabel ltxt center">
-                TUS EVENTOS
-            </p>
-        </div>
+<div class="row" id="barraTitulo">
+    <div class="col s12">
+        <p class="titleLabel ltxt center">
+            TUS EVENTOS
+        </p>
     </div>
+</div>
+
+<div class="container contenido">
+
 
     <div class="row" id="acordion">
         <div *ngFor="let evento of eventos" id={{evento.id}} class="eventoCont ltxt col s12" (click)="!more" [routerLink]="['../evento/', evento.id]">

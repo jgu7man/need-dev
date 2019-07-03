@@ -46,4 +46,7 @@
         padding-bottom: 5em;
         padding-top: 5em;
     }
+    #barraTitulo {
+        top: 5em;
+    }
 }

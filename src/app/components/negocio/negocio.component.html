@@ -18,8 +18,8 @@
             <h4>{{negocio.nombre}}</h4>
         </div>
         <div id="rating">
-            <span *ngIf="!negocio.rating">Aun no hay calificacion</span>
-            <span>{{negocio.rating}}</span>
+            <span *ngIf="!negocio.rating" style="margin-left: 1em">Aun no hay calificacion</span>
+            <span id="ratings" *ngIf="negocio.rating">{{negocio.rating}} Recomendaciones</span>
             <span id="rate" *ngIf="negocio.idUsuario != Usuario.userId" (click)="rate()">
                 <i id="star" class="far fa-star"></i>
             </span>
@@ -101,6 +101,10 @@
                 </div>
                 <div class="col s12" id="noComent" *ngIf="!negocio.comentarios">
                     Aun no hay comentarios
+                </div>
+                <div class="col s12" id="inputComent" *ngIf="negocio.idUsuario != Usuario.userId">
+                    <textarea name="comentario" id="comentario" [(ngModel)]="comentario"></textarea>
+                    <button class="needbtn" (click)="comentar()">COMENTAR</button>
                 </div>
             </div>
         </div>

@@ -3,7 +3,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NegocioService } from '../../services/directorio/negocio.service';
 import { NegocioModel } from '../../models/direcorio/negocio.model';
 import { UrlApi } from "../../log/url-api";
-// import { slider } from "materialize";
 declare var $: any;
 
 @Component({
@@ -18,6 +17,7 @@ export class NegocioComponent implements OnInit {
   public negocio: any;
   public images: any;
   public rater: boolean;
+  public comentario: string;
   constructor(
     private _negocio: NegocioService,
     private href: ActivatedRoute,
@@ -53,8 +53,12 @@ export class NegocioComponent implements OnInit {
     // Revisar si el usuario recomienda el negocio
     this._negocio.rater(this.negocioId, this.Usuario.userId).subscribe(
       res => {
-        this.rater = res.isRater
-        console.log(this.rater)
+        this.rater = res.isRater;
+        if(this.rater){
+          $("#star").addClass('fas')
+        } else {
+          $("#star").removeClass('fas')
+        }
       }
     )
 
@@ -62,6 +66,7 @@ export class NegocioComponent implements OnInit {
     this._negocio.rating(this.negocioId).subscribe(
       res => {
         this.negocio.rating = res.ratings;
+        
       }
     )
     
@@ -113,15 +118,26 @@ export class NegocioComponent implements OnInit {
   }
 
   // recomendar negocio: true || false
-  rate(){
+  async rate(){
     var rater = this.Usuario.userId
     var neg = this.negocioId
     $("#star").toggleClass('fas')
-    this._negocio.rate(neg, rater).subscribe(
-      res => {
-        console.log(res)
-      }
-    )
+    await this._negocio.rate(neg, rater).subscribe(
+      res => {console.log(res)});
+    setTimeout(()=> {
+      this._negocio.rating(neg).subscribe(
+        res  => { this.negocio.rating = res.ratings });
+    }, 1000);
+  }
+
+  async comentar(){
+    await this._negocio.comentar(this.negocioId, this.comentario).subscribe(
+      res => { console.log(res); });
+    setTimeout(()=> {
+      this._negocio.getComentarios(this.negocioId).subscribe(
+        res => {this.negocio.comentarios = res.comentarios})
+    }, 1000);
+    await $("#comentario").val('')
   }
 
   

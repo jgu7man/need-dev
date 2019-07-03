@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { UrlApi } from "../../log/url-api";
 
 @Injectable({
     providedIn: 'root'
 })
 export class CategoriasDirectorioService {
+
+    constructor(
+        private http: HttpClient
+    ){}
 
     public Categorias:any[] = [
         {id:'floreria', name: 'Florerías', imagen: '../../../../assets/img/caja-con-flores.jpg'},
@@ -23,6 +30,11 @@ export class CategoriasDirectorioService {
 
     getCategorias(){
         return this.Categorias;
+    }
+
+    getNegocios(catego: string): Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this.http.get(UrlApi.local+'getNegocios/'+catego, {headers: headers})
     }
 
 }

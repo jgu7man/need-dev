@@ -44,6 +44,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: #fff;
 }
 
 #perfil h4 {
@@ -156,6 +157,50 @@ input[type="file" i] {
     transition: all .3s
 }
 
+#ratings {
+    margin-left: 1em;
+}
+
 #rate .fas {
     color: gold;
+}
+
+@media screen and (min-width: 500px) {
+    #negocio {
+        padding-bottom: 0;
+    }
+    #perfil {
+        margin-top: 2em;
+        width: 90vw;
+    }
+    #perfil .s4 {
+        width: 15%;
+    }
+    .detalles {
+        display: flex;
+        flex-flow: row wrap;
+    }
+    .detalles .row {
+        width: 50% !important;
+    }
+    #rating {
+        display: inline-block;
+    }
+    #rate {
+        float: none;
+        margin-left: 2em;
+    }
+    #slider {
+        min-width: 100%;
+    }
+    #imgs {
+        display: flex;
+        flex-flow: row wrap;
+        width: 100% !important;
+        min-width: 100%;
+    }
+    .img {
+        width: 15vw !important;
+        height: 15vw;
+    }
 }

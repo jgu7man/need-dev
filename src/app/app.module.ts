@@ -49,6 +49,9 @@ import { PersonalComponent } from './components/user/tus-eventos/personal/person
 import { DetallesComponent } from './components/user/tus-eventos/detalles/detalles.component';
 import { PerfilComponent } from './components/user/perfil/perfil.component';
 import { NuevoEventoComponent } from './components/user/nuevo-evento/nuevo-evento.component';
+import { AgregarTarjetaComponent } from './components/pago-form/agregar-tarjeta/agregar-tarjeta.component';
+import { FormNegocioComponent } from './components/negocio/form-negocio/form-negocio.component';
+import { EditNegocioComponent } from './components/negocio/edit-negocio/edit-negocio.component';
 
 import { DirectorioComponent } from './components/directorio/directorio.component';
 import { CategoriaComponent } from './components/directorio/categoria/categoria.component';
@@ -60,8 +63,10 @@ import { PagarPlanComponent } from './components/directorio/pagar-plan/pagar-pla
 import { PagoFormComponent } from './components/pago-form/pago-form.component';
 import { NegocioComponent } from './components/negocio/negocio.component';
 import { LoadingComponent } from './components/loading/loading.component';
-import { FormNegocioComponent } from './components/negocio/form-negocio/form-negocio.component';
-import { EditNegocioComponent } from './components/negocio/edit-negocio/edit-negocio.component';
+import { ConocenosComponent } from './components/inicio/conocenos/conocenos.component';
+import { PreciosComponent } from './components/inicio/precios/precios.component';
+import { TycComponent } from './components/inicio/tyc/tyc.component';
+import { PdpComponent } from './components/inicio/pdp/pdp.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +102,11 @@ import { EditNegocioComponent } from './components/negocio/edit-negocio/edit-neg
     LoadingComponent,
     FormNegocioComponent,
     EditNegocioComponent,
-    
+    ConocenosComponent,
+    PreciosComponent,
+    TycComponent,
+    PdpComponent,
+    AgregarTarjetaComponent
   ],
   imports: [
     BrowserModule,

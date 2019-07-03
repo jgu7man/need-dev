@@ -67,7 +67,7 @@ input[type=tel]:not(.browser-default):focus:not([readonly])+label,
 input[type=number]:not(.browser-default):focus:not([readonly])+label,
 input[type=search]:not(.browser-default):focus:not([readonly])+label,
 textarea.materialize-textarea:focus:not([readonly])+label {
-    color: #6C009C !important;
+    color: #CCC !important;
 }
 
 
@@ -257,12 +257,27 @@ app-loading {
     z-index: 10;
 }
 
+#barraTitulo {
+    position: fixed;
+    z-index: 5;
+    text-align: center;
+    width: 100vw;
+    top: 0em;
+    background: #202020;
+    height: 5em;
+    padding-top: 1em;
+}
+
+#barraTitulo .s1 {
+    padding: 0 1em
+}
+
 
 /* DISEÑOS DE ESTRUCTURA */
 
 .contenido {
     padding-bottom: 5em;
-    padding-top: 2.5em;
+    padding-top: 5em;
 }
 
 .formPage {
@@ -279,7 +294,8 @@ app-loading {
 }
 
 #navbar {
-    z-index: 10;
+    position: absolute;
+    z-index: 12;
 }
 
 #cuerpo {
@@ -301,6 +317,7 @@ form .row {
     margin: 0 !important;
     color: #e3e3e3;
     box-shadow: 0px -10px 15px rgba(0, 0, 0, .5);
+    /* z-index: 10; */
 }
 
 .navbar ul {
@@ -342,7 +359,7 @@ form .row {
 
 .back {
     font-size: 2em;
-    padding: 0 1em;
+    /* padding: 0 1em; */
 }
 
 .navActive {

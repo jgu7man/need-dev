@@ -15,13 +15,13 @@
                 <p class="Link" *ngIf="uneteLink">
                     Únete al equipo NEED
                 </p>
-                <p class="Link" *ngIf="provLink" (click)="toggleMenu()">
+                <p class="Link" *ngIf="provLink" [routerLink]="['/directorio/bienvenida']" (click)="toggleMenu()">
                     Publica tus servicios
                 </p>
-                <p class="Link" *ngIf="conocenosLink">
+                <p class="Link" *ngIf="conocenosLink" [routerLink]="['/conocenos']" (click)="toggleMenu()">
                     Conócenos
                 </p>
-                <p class="Link" *ngIf="preciosLink">
+                <p class="Link" *ngIf="preciosLink" [routerLink]="['/precios']" (click)="toggleMenu()">
                     Precios
                 </p>
                 <p class="Link" *ngIf="cerrarLink" (click)="cerrarSesion()">
