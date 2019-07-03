@@ -25,6 +25,9 @@ app.use((req, res, next) => {
 var login = require('./routes/login.routes');
 app.use('/', login);
 
+var usuario = require('./routes/usuario.routes');
+app.use('/', usuario);
+
 var evento = require('./routes/evento.routes');
 app.use('/', evento);
 

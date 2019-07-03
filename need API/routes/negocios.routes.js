@@ -1,13 +1,13 @@
 'use-strict';
 var fb = require('../firebase');
-var storage = require('../google-cloud');
 var express = require('express');
 var ruta = express.Router();
+var storage = require('../google-cloud');
 var multiparty = require('connect-multiparty');
-var multipartyMiddleware = multiparty({ uploadDir: './negocios img' })
-var FileSystem = require('fs')
+var multipartyMiddleware = multiparty({ uploadDir: './negocios img' });
+var FileSystem = require('fs');
 
-const dbRef = fb.firestore().collection('negocios')
+const dbRef = fb.firestore().collection('negocios');
 
 
 ruta.post('/saveNegocio', (req, res) => {
@@ -23,7 +23,7 @@ ruta.post('/saveNegocio', (req, res) => {
         direccion: req.body.direccion,
         colonia: req.body.colonia,
         ciudad: req.body.ciudad
-    }).then(ref => {
+    }).then((ref) => {
         console.log(ref.id);
         ref.update({ idNegocio: ref.id });
         fb.firestore().collection('usuarios').doc(req.body.idUsuario).update({
@@ -87,6 +87,20 @@ ruta.post('/updateNegocio/:neg?', (req, res) => {
     });
 });
 
+ruta.get('/getNegocios/:catego?', (req, res) => {
+    var catego = decodeURI(req.params.catego);
+    dbRef.where('categoria', '==', catego).get().then(snapshot => {
+        var negocios = [];
+        snapshot.forEach(doc => {
+            negocios.push(doc.data());
+        });
+
+        return res.status(200).send({
+            negocios: negocios
+        });
+    });
+});
+
 ruta.get('/getNegocio/:neg?', (req, res) => {
     const idNegocio = req.params.neg;
     fb.firestore().doc(`negocios/${idNegocio}`).get()
@@ -98,9 +112,11 @@ ruta.get('/getNegocio/:neg?', (req, res) => {
         });
 });
 
+
+
 ruta.post('/imagesNegocio/:id?', multipartyMiddleware, async(req, res) => {
     const files = req.files.imagen;
-    const filesArray = Array.isArray(files)
+    const filesArray = Array.isArray(files);
     const negId = req.params.id;
     const bucket = 'rootneed';
     const images = [];
@@ -116,7 +132,7 @@ ruta.post('/imagesNegocio/:id?', multipartyMiddleware, async(req, res) => {
             .then(() => {
                 console.log(`${rutaLocal} subido a ${bucket}.`);
             });
-        images.push(urlArchivo)
+        images.push(urlArchivo);
     } else {
         await req.files.imagen.forEach(img => {
 
@@ -148,7 +164,6 @@ ruta.post('/imagesNegocio/:id?', multipartyMiddleware, async(req, res) => {
             if (doc.data().images) {
                 // si existen tomar el Array
                 doc.data().images.forEach(img => {
-
                     uploaded.push(img);
                 });
                 // sumarlo al nuevo Array
@@ -162,41 +177,103 @@ ruta.post('/imagesNegocio/:id?', multipartyMiddleware, async(req, res) => {
                 dbRef.doc(negId).update({
                     images: images
                 });
-                console.log('se subieron: ', images)
-
+                console.log('se subieron: ', images);
             }
-
         });
-
 
     return await res.status(200).send({
         mensaje: 'imágenes nuevas subidas a la base de datos',
         url: images
     });
 
-
-
-
 });
 
-ruta.post('/rate/:neg?/:rate?', (req, res) => {
+ruta.post('/rate/:neg?/:rater?', (req, res) => {
     var id = req.params.neg;
-    var rate = req.params.rate;
-    var rateDoc = dbRef.doc(id).collection('ratings').doc(rate)
+    var rater = req.params.rater;
+    var rateDoc = dbRef.doc(id).collection('ratings').doc(rater);
     rateDoc.get().then(doc => {
         if (!doc.exists) {
             rateDoc.set({ rate: true });
             return res.status(200).send({
                 rated: true
-            })
+            });
         } else {
             rateDoc.delete();
             return res.status(200).send({
-                rated: true
-            })
+                rated: false
+            });
         }
     });
 
+});
+
+ruta.get('/get-ratings/:neg?', (req, res) => {
+    var id = req.params.neg;
+    var rateDoc = dbRef.doc(id).collection('ratings');
+
+    rateDoc.get().then(docs => {
+        var ratings = docs.size;
+        return res.status(200).send({
+            ratings: ratings,
+        });
+    });
+});
+
+ruta.get('/get-rater/:neg?/:rater?', (req, res) => {
+    var id = req.params.neg;
+    var rater = req.params.rater;
+    var rateDoc = dbRef.doc(id).collection('ratings');
+
+    rateDoc.doc(rater).get().then(doc => {
+        if (doc.exists) {
+            return res.status(200).send({
+                isRater: true
+            });
+        } else {
+            return res.status(200).send({
+                isRater: false
+            });
+        }
+    });
+
+});
+
+ruta.post('/comentar/:neg?/:coment?', (req, res) => {
+    var id = req.params.neg;
+    var coment = req.params.coment;
+
+    dbRef.doc(id).get().then(doc => {
+        if (!doc.data().comentarios) {
+            dbRef.doc(id).update({
+                comentarios: [coment]
+            });
+            return res.status(200).send({
+                mensaje: 'se agregó un nuevo comentario'
+            });
+        } else {
+            var comentarios = doc.data().comentarios,
+                newComent = [coment],
+                allComents = comentarios.concat(newComent);
+            dbRef.doc(id).update({
+                comentarios: allComents
+            });
+
+            return res.status(200).send({
+                mensaje: 'se agregaron los comentarios'
+            });
+        }
+    });
+});
+
+ruta.get('/getComentarios/:id?', (req, res) => {
+    var id = req.params.id;
+    dbRef.doc(id).get().then(doc => {
+        var comentarios = doc.data().comentarios;
+        return res.status(200).send({
+            comentarios: comentarios
+        })
+    });
 });
 
 module.exports = ruta;
