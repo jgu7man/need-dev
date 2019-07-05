@@ -6,10 +6,8 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Router } from "@angular/router";
 import { Observable, of, pipe } from 'rxjs';
 import { switchMap, map, take, tap, mapTo } from 'rxjs/operators';
-import { UsuarioModel } from 'src/app/models/usuario.model';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { UrlApi } from 'src/app/log/url-api';
-import { fromPromise  } from 'rxjs/observable/fromPromise';
+import { UrlApi } from '../../log/url-api';
 
 @Injectable({
   providedIn: 'root'
@@ -75,7 +73,7 @@ export class AuthService {
       nombre: user.displayName, 
       avatar: user.photoURL,
     } 
-    return this._http.post(UrlApi.local +'social-login', data , {headers: headers}).subscribe(userData => {
+    return this._http.post(UrlApi.heroku +'social-login', data , {headers: headers}).subscribe(userData => {
       if(userData){
         localStorage.setItem('login', JSON.stringify(userData["usuario"]));
         this.router.navigate(['/usuario/perfil']);
@@ -97,7 +95,7 @@ export class AuthService {
         'Content-Type':  'application/json'
       })
     };
-    return this._http.get(UrlApi.local + `getUser/${uid}`, httpOptions);
+    return this._http.get(UrlApi.heroku + `getUser/${uid}`, httpOptions);
   }
   async signOut() {
     await this.afAuth.auth.signOut();

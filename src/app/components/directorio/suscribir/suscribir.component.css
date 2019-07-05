@@ -1,10 +1,10 @@
-#categoria {
-    background: none;
-    width: 93%;
-    left: 4%;
-    position: relative;
-}
-
-option:disabled {
-    color: #ccc !important
+@media screen and (min-width: 500px) {
+    app-form-negocio {
+        position: relative;
+        top: 5em;
+    }
+    select {
+        left: 10px !important;
+        width: 95% !important;
+    }
 }

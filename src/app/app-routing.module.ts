@@ -23,6 +23,14 @@ import { CategoriasComponent } from './components/directorio/all-catego/categori
 import { SuscribirComponent } from './components/directorio/suscribir/suscribir.component';
 import { NegBienvenidaComponent } from './components/directorio/neg-bienvenida/neg-bienvenida.component';
 import { PagarPlanComponent } from './components/directorio/pagar-plan/pagar-plan.component';
+import { NegocioComponent } from './components/negocio/negocio.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { EditNegocioComponent } from './components/negocio/edit-negocio/edit-negocio.component';
+import { ConocenosComponent } from './components/inicio/conocenos/conocenos.component';
+import { PreciosComponent } from './components/inicio/precios/precios.component';
+import { TycComponent } from './components/inicio/tyc/tyc.component';
+import { PdpComponent } from './components/inicio/pdp/pdp.component';
+import { AgregarTarjetaComponent } from './components/pago-form/agregar-tarjeta/agregar-tarjeta.component';
 
 // Import canActivate guard services
 import { AuthGuard } from "./shared/guard/auth.guard";
@@ -32,11 +40,17 @@ const routes: Routes = [
   { path: '', component: InicioComponent, data:{nav: 1}, canActivate:[SecureInnerPagesGuard]},
   // Pasarela de inicio
   { path: 'login', component: LoginUserComponent, canActivate:[SecureInnerPagesGuard] },
+  { path: 'loading', component: LoadingComponent },  
   { path: 'login/:idEvento', component: LoginUserComponent },
   { path: 'login/pagar/:plan', component: LoginUserComponent },
   { path: 'cotizacion', component: CotizacionComponent },
   { path: 'cotizacion/:idEvento', component: CotizacionComponent },
   { path: 'crear-evento/:idEvento', component: CrearEventoComponent },
+
+  { path: 'conocenos', component: ConocenosComponent },
+  { path: 'precios', component: PreciosComponent },
+  { path: 'tyc', component: TycComponent },
+  { path: 'pdp', component: PdpComponent },
   // Notificaciones
   { path: 'evento-creado/:idEvento', component: EventoCreadoComponent},
   // USUARIO
@@ -49,15 +63,20 @@ const routes: Routes = [
     ]},
     { path: 'tus-eventos', component: TusEventosComponent, data: {nav: 2} },
     { path: 'perfil', component: PerfilComponent, data: {nav: 3}, canActivate:[AuthGuard]},
-    { path: 'nuevo-evento', component: NuevoEventoComponent}
+    { path: 'nuevo-evento', component: NuevoEventoComponent},
+    { path: 'negocio/:neg', component: NegocioComponent },
+    { path: 'edit-negocio/:neg', component: EditNegocioComponent },
+    { path: 'agregar-tarjeta', component: AgregarTarjetaComponent},
   ]},
   { path: 'directorio', component: DirectorioComponent, data: {nav: 4}, children: [
+    { path: '', component: CategoriasComponent},
     { path: 'bienvenida', component: NegBienvenidaComponent},
     { path: 'categorias', component: CategoriasComponent},
     { path: 'categoria/:name', component: CategoriaComponent},
     { path: 'suscripcion', component: SuscribirComponent},
     { path: 'pagarPlan/:plan', component: PagarPlanComponent},
   ] },
+  { path: 'negocio/:neg', component: NegocioComponent},
 
 ];
 

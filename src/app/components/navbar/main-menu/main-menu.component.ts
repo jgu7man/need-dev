@@ -48,6 +48,5 @@ export class MainMenuComponent implements OnInit {
     $("#menu").toggleClass('opened')
     $("#close").toggle();
     this.cerrarMenu.emit(false)
-    this._ruta.navigate(['/directorio/bienvenida'])
   }
 }

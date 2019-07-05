@@ -3,6 +3,11 @@
     height: 65vh;
 }
 
+#planes::-webkit-scrollbar-thumb {
+    background: #6C009C;
+    border-radius: 1em;
+}
+
 .plan {
     color: #ccc;
     position: relative;
@@ -12,4 +17,15 @@
     width: 90% !important;
     left: 50% !important;
     transform: translateX(-50%);
+}
+
+@media screen and (min-width: 500px) {
+    #planes {
+        display: flex;
+        flex-flow: row;
+    }
+    .plan {
+        width: 20% !important;
+        left: 10% !important;
+    }
 }

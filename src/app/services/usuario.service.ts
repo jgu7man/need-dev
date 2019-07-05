@@ -8,6 +8,8 @@ import { UrlApi } from "../log/url-api";
 @Injectable()
 export class UsuarioService {
 
+    
+
     public usuario: UsuarioModel;
     constructor(
         private _http: HttpClient,
@@ -22,20 +24,27 @@ export class UsuarioService {
 
     registrar( usuario: UsuarioModel ): Observable<any> {
         let params = JSON.stringify(usuario);
-        // console.log(params);
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
         return this._http.post(UrlApi.heroku+'social-login', params, {headers: headers});
     }
 
     login(){
         var loged = JSON.parse(localStorage.getItem('login'));
-        // console.log(loged);
         if(loged == null ) {
             this._Router.navigate(['/login/'])
           } else {
             this.usuario = JSON.parse(localStorage.getItem('login'));
             }
-            // console.log(this.usuario);
+    }
+
+    getNegocioUser( idUser: any): Observable<any> {
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this._http.get(UrlApi.heroku+'neg-de-usuario/'+idUser, {headers: headers});
+    }
+
+    getEventosUser( idUser: any): Observable<any> {
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this._http.get(UrlApi.heroku+'eve-de-usuario/'+idUser, {headers: headers});
     }
 
     session(){

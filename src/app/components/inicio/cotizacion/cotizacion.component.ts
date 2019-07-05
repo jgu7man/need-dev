@@ -24,7 +24,6 @@ export class CotizacionComponent implements OnInit {
   public total: number;
   public idEvento:any;
   
-  public pMesero: number; public pJefe: number; public pBarman: number; public pBarra: number; public pValet: number;  public pHostess: number; public pSeguridad: number;
 
   constructor(
     private _Route: ActivatedRoute,

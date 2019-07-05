@@ -3,7 +3,7 @@
     background-size: cover;
     padding: 3em 3em 0em;
     position: relative;
-    top: -3em;
+    top: -5em;
     height: 10em;
     box-shadow: inset 0 -3px 4px rgba(0, 0, 0, 0.5)
 }
@@ -43,10 +43,7 @@
 
 #rating {
     color: #ccc;
-}
-
-#rating .col {
-    margin-top: 1em;
+    height: 60px;
 }
 
 .number {
@@ -54,9 +51,55 @@
     font-weight: 600;
 }
 
-#finanzas {
+#finanzas,
+#negocios {
     color: #ccc;
     padding: 2em;
+    font-weight: 600;
+}
+
+.negocio {
+    padding: 0.5em;
+    cursor: pointer;
+    border-top: solid .5px #ccc;
+    border-bottom: solid .5px;
+}
+
+.imgNegocio {
+    height: 100%;
+    max-width: 200%;
+}
+
+.imgNegocio img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+.imgName {
+    font-size: 1.3em;
+    vertical-align: middle;
+    line-height: 2;
+}
+
+#noNeg {
+    background: #ccc;
+    color: #000;
+    text-align: center;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+#noNeg span {
+    color: gold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.seccion {
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 1em;
+    margin-top: 3em;
 }
 
 @media screen and (min-width: 500px) {
@@ -64,6 +107,16 @@
         width: 30%;
     }
     #finanzas {
-        width: 50%;
+        width: 45%;
+        margin: 5%;
+        display: inline-block;
+    }
+    #negocios {
+        width: 40%;
+        margin: 2.5%;
+        display: inline-block
+    }
+    .seccion {
+        margin-top: 0;
     }
 }
