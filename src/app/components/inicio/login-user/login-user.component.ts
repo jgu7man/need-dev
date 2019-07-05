@@ -50,7 +50,7 @@ export class LoginUserComponent implements OnInit {
   }
 
   goLogin(){
-    $("#cargando").fadeToggle()
+    $("app-loading").fadeToggle()
    this._socialAuth.signIn(GoogleLoginProvider.PROVIDER_ID)
       .then((userData) => {
         this.user = userData;
@@ -83,7 +83,7 @@ export class LoginUserComponent implements OnInit {
   }
 
   reload(){
-    $("#cargando").fadeToggle()
+    $("app-loading").fadeToggle()
     
     var url = window.location.href;
     var id = this.idEvento;

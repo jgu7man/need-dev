@@ -39,12 +39,12 @@ export class UsuarioService {
 
     getNegocioUser( idUser: any): Observable<any> {
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this._http.get(UrlApi.local+'neg-de-usuario/'+idUser, {headers: headers});
+        return this._http.get(UrlApi.heroku+'neg-de-usuario/'+idUser, {headers: headers});
     }
 
     getEventosUser( idUser: any): Observable<any> {
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this._http.get(UrlApi.local+'eve-de-usuario/'+idUser, {headers: headers});
+        return this._http.get(UrlApi.heroku+'eve-de-usuario/'+idUser, {headers: headers});
     }
 
     session(){

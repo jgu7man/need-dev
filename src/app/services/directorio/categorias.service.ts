@@ -34,7 +34,7 @@ export class CategoriasDirectorioService {
 
     getNegocios(catego: string): Observable<any>{
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this.http.get(UrlApi.local+'getNegocios/'+catego, {headers: headers})
+        return this.http.get(UrlApi.heroku+'getNegocios/'+catego, {headers: headers})
     }
 
 }

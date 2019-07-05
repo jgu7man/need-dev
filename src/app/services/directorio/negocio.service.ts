@@ -18,19 +18,19 @@ export class NegocioService {
     saveNegocio( negocio: NegocioModel): Observable<any> {
         let params = JSON.stringify(negocio);
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this.http.post(UrlApi.local+'saveNegocio', params, {headers: headers});
+        return this.http.post(UrlApi.heroku+'saveNegocio', params, {headers: headers});
     }
 
     updateNegocio( negocio: NegocioModel): Observable<any> {
         var id = negocio.idNegocio
         let params = JSON.stringify(negocio);
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this.http.post(UrlApi.local+'updateNegocio/'+id, params, {headers: headers});
+        return this.http.post(UrlApi.heroku+'updateNegocio/'+id, params, {headers: headers});
     }
 
     getNegocio( idNegocio: any): Observable<any> {
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this.http.get(UrlApi.local+'getNegocio/'+idNegocio,  {headers: headers});
+        return this.http.get(UrlApi.heroku+'getNegocio/'+idNegocio,  {headers: headers});
     }
 
     
@@ -63,26 +63,26 @@ export class NegocioService {
 
     rate(id: string, rate: string): Observable<any> {
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this.http.post(UrlApi.local+'rate/'+id+'/'+rate, {headers: headers});
+        return this.http.post(UrlApi.heroku+'rate/'+id+'/'+rate, {headers: headers});
     }
 
     rating(id: string): Observable<any> {
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this.http.get(UrlApi.local+'get-ratings/'+id, {headers: headers});
+        return this.http.get(UrlApi.heroku+'get-ratings/'+id, {headers: headers});
     }
 
     rater(id: string, rater: string): Observable<any> {
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this.http.get(UrlApi.local+'get-rater/'+id+'/'+rater, {headers: headers});
+        return this.http.get(UrlApi.heroku+'get-rater/'+id+'/'+rater, {headers: headers});
     }
 
     comentar(id: string, comentario: string): Observable<any> {
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this.http.post(UrlApi.local+'comentar/'+id+'/'+comentario, {headers: headers});
+        return this.http.post(UrlApi.heroku+'comentar/'+id+'/'+comentario, {headers: headers});
     }
 
     getComentarios(id: string): Observable<any> {
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this.http.get(UrlApi.local+'getComentarios/'+id, {headers: headers});
+        return this.http.get(UrlApi.heroku+'getComentarios/'+id, {headers: headers});
     }
 }
