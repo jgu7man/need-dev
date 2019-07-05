@@ -2,13 +2,11 @@
 
 var express = require('express');
 var fb = require('../firebase');
-const auth = require('../middleware/auth');
 
 var ruta = express.Router();
 
 ruta.post('/social-login', async(req, res) => {
-    const {nombre, email, avatar, uid, userToken} = req.body;
-    console.log(userToken)
+    const {nombre, email, avatar, uid} = req.body;
     let userRef = await fb.firestore().doc(`usuarios/${uid}`);
     let data = {
       uid,
@@ -32,10 +30,9 @@ ruta.post('/social-login', async(req, res) => {
           message: "An error has occurred"
         });
       })
-
 });
 
-ruta.get('/getUser/:uid', auth, async(req,res)=> {
+ruta.get('/getUser/:uid', async(req,res)=> {
   let uid = req.params.uid;
   await fb.firestore().collection('usuarios').doc(uid).get()
     .then(doc => {
