@@ -9,13 +9,16 @@
                 </div>
             </div>
         </div>
-
+        <div *ngIf="authService.user$ | async; then usuario; else invitado"></div>
         <div id="areaLinks">
             <div class="col s12 right">
-                <p class="Link" *ngIf="uneteLink">
-                    Únete al equipo NEED
-                </p>
-                <p class="Link" *ngIf="provLink">
+                <ng-template #invitado>
+                    <p class="Link">
+                        Únete al equipo NEED
+                    </p>
+                </ng-template>
+                
+                <p class="Link" *ngIf="provLink" (click)="toggleMenu()">
                     Publica tus servicios
                 </p>
                 <p class="Link" *ngIf="conocenosLink">
@@ -24,9 +27,11 @@
                 <p class="Link" *ngIf="preciosLink">
                     Precios
                 </p>
-                <p class="Link" *ngIf="cerrarLink" (click)="authService.SignOut()">
-                    Cerrar Sesión
-                </p>
+                <ng-template #usuario>
+                    <p class="Link" (click)="authService.signOut()">
+                        Cerrar Sesión
+                    </p>
+                </ng-template>
             </div>
         </div>
 

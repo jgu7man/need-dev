@@ -1,6 +1,6 @@
 <div class="contenido">
 
-    <div class="row" id="datosUsuario" *ngIf="authService.userData as usuario">
+    <div class="row" id="datosUsuario" *ngIf="(authService.user$ | async) as usuario">
         <div class="col s12 center">
             <div id="fotoPerfil">
                 <img src="{{usuario.avatar}}" alt="">

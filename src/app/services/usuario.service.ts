@@ -14,7 +14,7 @@ export class UsuarioService {
         private _Router: Router
         ) {
             this.usuario = new UsuarioModel('','','','');
-            }
+        }
 
     ngOnInit(): void {
         this.login();

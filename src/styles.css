@@ -30,7 +30,8 @@ input[type=email]:not(.browser-default),
 input[type=url]:not(.browser-default),
 input[type=tel]:not(.browser-default),
 input[type=number]:not(.browser-default),
-input[type=search]:not(.browser-default) {
+input[type=search]:not(.browser-default),
+textarea.materialize-textarea {
     margin-bottom: 0% !important;
     color: #e3e3e3;
     border: solid 1px #f2f2f2 !important;
@@ -152,6 +153,10 @@ label {
     font-weight: 600
 }
 
+.formAlert {
+    color: #ffca00;
+}
+
 
 /* DISEÑO DE ELEMENTOS */
 
@@ -208,6 +213,39 @@ select {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
+}
+
+.fileneedbtn {
+    background: #6C009C !important;
+    float: right !important;
+    width: 100%
+}
+
+.upImage {
+    width: 45% !important;
+    line-height: 1;
+    text-align: right !important;
+    color: #fff !important;
+}
+
+.negImagen {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
+    border-radius: 1em;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, .5);
+}
+
+.negImagen img {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
 }
 
 
@@ -274,6 +312,7 @@ form .row {
     text-align: center;
     color: #e3e3e3;
     cursor: pointer;
+    transition: all .5s
     /* margin: 0 25%; */
 }
 
@@ -295,6 +334,10 @@ form .row {
 .back {
     font-size: 2em;
     padding: 0 1em;
+}
+
+.navActive {
+    color: #6C009C !important
 }
 
 

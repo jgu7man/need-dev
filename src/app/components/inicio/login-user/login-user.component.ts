@@ -19,6 +19,7 @@ export class LoginUserComponent implements OnInit {
   public usuario: UsuarioModel;
   public evento: EventoModel;
   public idEvento: any;
+  public plan: any
 
   constructor(
     // private _socialAuth: AuthService,
@@ -30,9 +31,14 @@ export class LoginUserComponent implements OnInit {
     this.evento = new EventoModel('', '', 0, 0, 0, 0, '','')
    }
 
-  ngOnInit() {
-    this._Route.params.subscribe((params: Params) => {
-      this.idEvento = params.idEvento;
+  async ngOnInit() {
+     this._Route.params.subscribe((params: Params) => {
+      var prop = params.hasOwnProperty('idEvento');
+     if (prop == true) {
+        this.idEvento = params.idEvento;
+      }else{
+        this.plan = params.plan
+      }
       var evento = params.idEvento+'evento';
       this.evento = JSON.parse(localStorage.getItem(evento));
   })}
@@ -47,7 +53,13 @@ export class LoginUserComponent implements OnInit {
 
   goLogin(){
     $("#cargando").fadeToggle();
-    this.authService.GoogleAuth();
+    try{
+      this.authService.GoogleAuth();
+    }catch(e){
+      console.log(e.message);
+      debugger;
+      $("#cargando").fadeToggle();
+    }
     // this._socialAuth.signIn(GoogleLoginProvider.PROVIDER_ID)
     //   .then((userData) => {
     //     console.log(userData);

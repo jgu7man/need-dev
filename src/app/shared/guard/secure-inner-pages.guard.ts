@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {  Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from "../services/auth.service";
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { take, tap, map, mapTo } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +15,17 @@ export class SecureInnerPagesGuard implements CanActivate {
     public router: Router
   ) { }
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if(this.authService.isLoggedIn) {
-       this.router.navigate(['/usuario/perfil'])
-    }
-    return true;
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean{
+   
+    return this.authService.user$.pipe(
+      take(1),
+      map(user => !!user),
+      tap(loggedIn => {
+        if (loggedIn) {
+          this.router.navigate(['/usuario/perfil']);
+        }
+      }),
+      mapTo(true)
+    )
   }
-
 }

@@ -1,0 +1,10 @@
+#categoria {
+    background: none;
+    width: 93%;
+    left: 4%;
+    position: relative;
+}
+
+option:disabled {
+    color: #ccc !important
+}

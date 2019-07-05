@@ -19,16 +19,21 @@ import { PerfilComponent } from './components/user/perfil/perfil.component';
 import { DirectorioComponent } from './components/directorio/directorio.component';
 import { NuevoEventoComponent } from './components/user/nuevo-evento/nuevo-evento.component';
 import { CategoriaComponent } from './components/directorio/categoria/categoria.component';
+import { CategoriasComponent } from './components/directorio/all-catego/categorias.component';
+import { SuscribirComponent } from './components/directorio/suscribir/suscribir.component';
+import { NegBienvenidaComponent } from './components/directorio/neg-bienvenida/neg-bienvenida.component';
+import { PagarPlanComponent } from './components/directorio/pagar-plan/pagar-plan.component';
 
 // Import canActivate guard services
 import { AuthGuard } from "./shared/guard/auth.guard";
 import { SecureInnerPagesGuard } from "./shared/guard/secure-inner-pages.guard";
 
 const routes: Routes = [
-  { path: '', component: InicioComponent, data:{nav: 1}},
+  { path: '', component: InicioComponent, data:{nav: 1}, canActivate:[SecureInnerPagesGuard]},
   // Pasarela de inicio
   { path: 'login', component: LoginUserComponent, canActivate:[SecureInnerPagesGuard] },
   { path: 'login/:idEvento', component: LoginUserComponent },
+  { path: 'login/pagar/:plan', component: LoginUserComponent },
   { path: 'cotizacion', component: CotizacionComponent },
   { path: 'cotizacion/:idEvento', component: CotizacionComponent },
   { path: 'crear-evento/:idEvento', component: CrearEventoComponent },
@@ -46,8 +51,13 @@ const routes: Routes = [
     { path: 'perfil', component: PerfilComponent, data: {nav: 3}, canActivate:[AuthGuard]},
     { path: 'nuevo-evento', component: NuevoEventoComponent}
   ]},
-  { path: 'directorio', component: DirectorioComponent, data: {nav: 4} },
-  { path: 'categoria/:name', component: CategoriaComponent},
+  { path: 'directorio', component: DirectorioComponent, data: {nav: 4}, children: [
+    { path: 'bienvenida', component: NegBienvenidaComponent},
+    { path: 'categorias', component: CategoriasComponent},
+    { path: 'categoria/:name', component: CategoriaComponent},
+    { path: 'suscripcion', component: SuscribirComponent},
+    { path: 'pagarPlan/:plan', component: PagarPlanComponent},
+  ] },
 
 ];
 

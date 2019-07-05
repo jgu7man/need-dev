@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DatosEvento } from '../../../models/evento/datosevento.model';
 import { ServicioModel } from '../../../models/evento/servicio.model';
 import { EventoModel } from '../../../models/evento/evento.model';
-import { EventoService } from 'src/app/services/evento.service';
+import { EventoService } from '../../../services/evento.service';
 
 declare var jQuery:any;
 declare var $:any;

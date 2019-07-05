@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CompareValidatorDirective } from './directives/validator.directive';
+import { PwdToggleDirective } from './directives/pwd-toggle.directive';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterializeModule } from 'angular2-materialize';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
@@ -13,6 +15,7 @@ import {HttpClientModule, HttpBackend} from '@angular/common/http';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireAuthModule } from "@angular/fire/auth";
+// import { AngularFireStorageModule, StorageBucket } from "@angular/fire/storage";
 import { environment } from "../environments/environment";
 
 // SERVICIOS
@@ -49,9 +52,17 @@ import { NuevoEventoComponent } from './components/user/nuevo-evento/nuevo-event
 
 import { DirectorioComponent } from './components/directorio/directorio.component';
 import { CategoriaComponent } from './components/directorio/categoria/categoria.component';
+import { CategoriasComponent } from './components/directorio/all-catego/categorias.component';
+import { SuscribirComponent } from './components/directorio/suscribir/suscribir.component';
+import { NegBienvenidaComponent } from './components/directorio/neg-bienvenida/neg-bienvenida.component';
+import { ListaPlanesComponent } from './components/directorio/lista-planes/lista-planes.component';
+import { PagarPlanComponent } from './components/directorio/pagar-plan/pagar-plan.component';
+import { PagoFormComponent } from './components/pago-form/pago-form.component';
 
 @NgModule({
   declarations: [
+    CompareValidatorDirective,
+    PwdToggleDirective,
     AppComponent,
     NavbarComponent,
     HeroformComponent,
@@ -72,6 +83,12 @@ import { CategoriaComponent } from './components/directorio/categoria/categoria.
     MainMenuComponent,
     NuevoEventoComponent,
     CategoriaComponent,
+    CategoriasComponent,
+    SuscribirComponent,
+    NegBienvenidaComponent,
+    ListaPlanesComponent,
+    PagarPlanComponent,
+    PagoFormComponent,
     
   ],
   imports: [
@@ -92,12 +109,14 @@ import { CategoriaComponent } from './components/directorio/categoria/categoria.
     AngularFireAuthModule,
     AngularFirestoreModule,
     HttpClientModule
+    // AngularFireStorageModule
   ],
   providers: [
     // FirebaseService,
     AuthService,
     UsuarioService,
-    EventoService
+    EventoService,
+    // { provide: StorageBucket, useValue: 'archivos-need' }
     // {provide: AuthServiceConfig, useFactory: provideConfig}
   ],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from "../../shared/services/auth.service";
 declare var $;
 
 @Component({
@@ -16,10 +17,10 @@ export class NavbarComponent implements OnInit {
   public menuIcon: boolean = true;
   public calIcon: boolean = true;
   public newIcon: boolean = true;
-  constructor() { }
+  constructor(public auth: AuthService) { }
 
   ngOnInit() {
-    var loged = JSON.parse(localStorage.getItem('login'))
+    var loged = JSON.parse(localStorage.getItem('usuario'))
     if (loged == null ){
       this.userIcon = false;
       this.calIcon = false;
@@ -34,10 +35,17 @@ export class NavbarComponent implements OnInit {
     window.innerWidth;
   }
 
-  async toggleMenu(){
-    await $("#menu").toggleClass('opened')
+  toggleMenu(){
+    $("#menu").toggleClass('opened')
     $("#close").toggle()
   }
+
+  cerrarMenu(e){
+    console.log(e);
+    this.menu = e
+  }
+
+  
 
   
 

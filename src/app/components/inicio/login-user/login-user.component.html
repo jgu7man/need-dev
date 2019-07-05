@@ -13,8 +13,8 @@
                     <li (click)="goLogin()">
                         <button class="fbLogin loginbtn">Facebook</button>
                     </li>
-                    <li (click)="authService.GoogleAuth()">
-                        <button class="goLogin loginbtn">Google</button>
+                    <li>
+                        <button class="goLogin loginbtn" (click)="goLogin()">Google</button>
                     </li>
                 </ul>
             </div>
