@@ -21,6 +21,7 @@ export class SecureInnerPagesGuard implements CanActivate {
       take(1),
       map(user => !!user),
       tap(loggedIn => {
+        console.log(loggedIn);
         if (loggedIn) {
           this.router.navigate(['/usuario/perfil']);
         }

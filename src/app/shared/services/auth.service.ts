@@ -27,11 +27,9 @@ export class AuthService {
     public ngZone: NgZone // NgZone service to remove outside scope warning
   ) { 
     this.user$ = this.afAuth.authState.pipe(
-      take(1),
       switchMap( user => {
         //usuario logeado
         if(user){
-          console.log('Entre esta vez!');
           return this.getUserData(user.uid).pipe(
             map(data => {
               return data.usuario;
@@ -71,58 +69,50 @@ export class AuthService {
   private async updateUserData(user): Promise<any>{
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     
-   
-    this.getIdToken().then(token => {
-      const data = { 
-        uid: user.uid, 
-        email: user.email, 
-        nombre: user.displayName, 
-        avatar: user.photoURL,
-        userToken: token
-      } 
-      console.log(data)
-      return this._http.post(UrlApi.local +'social-login', data , {headers: headers}).subscribe(userData => {
-        if(userData){
-          this.router.navigate(['/usuario/perfil']);
-        }
-        console.log(userData);
-      })
-    }).catch(err => {
-      console.log(err.message)
-    })
-
-    
+    const data = { 
+      uid: user.uid, 
+      email: user.email, 
+      nombre: user.displayName, 
+      avatar: user.photoURL,
+    } 
+    return this._http.post(UrlApi.local +'social-login', data , {headers: headers}).subscribe(userData => {
+      if(userData){
+        localStorage.setItem('login', JSON.stringify(userData["usuario"]));
+        this.router.navigate(['/usuario/perfil']);
+      }
+      console.log(userData);
+    });
 
   }
   private getUserData(uid: string): Observable<any>{
     
     let tokenUser:string = null;
 
-    this.getIdToken().then(token => {
-      tokenUser = token;
-    });
+    // this.getIdToken().then(token => {
+    //   tokenUser = token;
+    // });
+
     const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type':  'application/json',
-          'Authorization': `${tokenUser}`
-        })
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
     };
-    console.log(tokenUser);
     return this._http.get(UrlApi.local + `getUser/${uid}`, httpOptions);
   }
   async signOut() {
     await this.afAuth.auth.signOut();
+    localStorage.removeItem('login');
     this.router.navigate(['/login']);
   }
   
-  async getIdToken():Promise<string>{
-    return await this.afAuth.auth.currentUser.getIdToken(true)
-      .then(token => {
-        return token;
-      })
-      .catch(err => {
-        console.log(err)
-        return err
-      })
-  }
+  // async getIdToken():Promise<string>{
+  //   return await this.afAuth.auth.currentUser.getIdToken(true)
+  //     .then(token => {
+  //       return token;
+  //     })
+  //     .catch(err => {
+  //       console.log(err)
+  //       return err
+  //     })
+  // }
 }
