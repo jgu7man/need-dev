@@ -33,7 +33,13 @@ ruta.post('/saveNegocio', (req, res) => {
             mensaje: 'negocio guardado',
             id: ref.id
         });
-    });
+    }).catch(error => {
+        res.status(500).json({
+            error: "Internal Error",
+            message: "Error registrando negocio",
+            messageError: error.message
+        })
+    })
 });
 
 ruta.post('/saveImage/:id?', multipartyMiddleware, async(req, res) => {
