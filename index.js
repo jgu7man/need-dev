@@ -18,13 +18,22 @@ app.use((req, res, next) => {
     next();
 });
 
+// var gc = require('./google-cloud');
+// gc.getBuckets().then(x => console.log(x))
+
 
 // RUTAS RUTAS RUTAS RUTAS
 var login = require('./routes/login.routes');
 app.use('/', login);
 
+var usuario = require('./routes/usuario.routes');
+app.use('/', usuario);
+
 var evento = require('./routes/evento.routes');
 app.use('/', evento);
+
+var negocio = require('./routes/negocios.routes');
+app.use('/', negocio)
 
 app.listen(port, () => {
     console.log(`Corriendo servidor en http://localhost:${port}`);

@@ -1,50 +1,61 @@
 'use-strict';
 
 var express = require('express');
+var fb = require('../firebase');
+const auth = require('../middleware/auth');
+
 var ruta = express.Router();
-var fs = require('../firestore');
 
-ruta.post('/social-login',async (req, res) => {
-    var nombre = req.body.nombre;
-    var email = req.body.email;
-    var avatar = req.body.avatar;
-    await fs.collection('usuarios').where('email', '==', email).get()
-        .then(async snapshot => {
-            var num = snapshot.size;
-            if (num == 0) {
-               await fs.collection('usuarios').add({
-                    nombre: nombre,
-                    email: email,
-                    avatar: avatar,
-                }).then(ref => {
-                    return res.status(200).send({
-                        message: 'Usuario guardado',
-                        id: ref.id,
-                        data: ref.data(),
-                    });
-                  });
-                // fs.collection('usuarios').where('email', '==', email).get()
-                //     .then(snapshot => {
-                //         snapshot.forEach(doc => {
-                //             return res.status(200).send({
-                //                 message: 'Usuario guardado',
-                //                 id: doc.id,
-                //                 data: doc.data(),
-                //             });
-                //         });
-                //     });
+ruta.post('/social-login', async(req, res) => {
+    const {nombre, email, avatar, uid, userToken} = req.body;
+    console.log(userToken)
+    let userRef = await fb.firestore().doc(`usuarios/${uid}`);
+    let data = {
+      uid,
+      email,
+      nombre,
+      avatar, 
+    };
 
-            } else {
-                snapshot.forEach(doc => {
-                    return res.status(200).send({
-                        message: 'Usuario encontrado',
-                        id: doc.id,
-                        data: doc.data(),
-                    });
-                })
-            }
+    userRef.set(data, {merge: true})
+      .then(user => {
+        if(user){
+          res.status(201).json({
+            message: "User register or updated successfully",
+            usuario: data
+          })
+        }
+      })
+      .catch(err => {
+        res.status(500).json({
+          error: err.message,
+          message: "An error has occurred"
         });
+      })
 
+});
+
+ruta.get('/getUser/:uid', auth, async(req,res)=> {
+  let uid = req.params.uid;
+  await fb.firestore().collection('usuarios').doc(uid).get()
+    .then(doc => {
+      if(doc.exists){
+        res.status(200).json({
+          usuario: doc.data()
+        })
+      } else {
+        res.status(404).json({
+          message: "usuario no encontrado con ese ID"
+        })
+      }
+    })
+    .catch(err => {
+      console.log(err.message);
+      res.status(500).json({
+        error: "Internal error",
+        message: "error buscando en el documento de usuarios"
+      })
+    });
 });
 
 module.exports = ruta;
