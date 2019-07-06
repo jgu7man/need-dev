@@ -69,7 +69,7 @@ export class FormNegocioComponent implements OnInit {
           const negId = res.idNegocio
             //subir imagen de perfil
           this._negocio.makeFileRequest(
-            UrlApi.local+'saveImage/'+this.negocio.idNegocio, [],
+            UrlApi.heroku+'saveImage/'+this.negocio.idNegocio, [],
             this.image, 'imagen')
           .then((result:any) => { console.log(result)
           })
@@ -86,7 +86,7 @@ export class FormNegocioComponent implements OnInit {
             const negId = res.id
             // subir imagen de perfil
             this._negocio.makeFileRequest(
-            UrlApi.local+'saveImage/'+this.negocio.idNegocio, [],
+            UrlApi.heroku +'saveImage/'+this.negocio.idNegocio, [],
             this.image, 'imagen')
           .then((result:any) => { console.log(result)
           })

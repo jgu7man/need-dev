@@ -28,6 +28,7 @@ export class AuthService {
       switchMap( user => {
         //usuario logeado
         if(user){
+          this.getIdToken()
           return this.getUserData(user.uid).pipe(
             map(data => {
               return data.usuario;
@@ -39,32 +40,15 @@ export class AuthService {
         }
       })
     )
-      // .pipe(
-      //   switchMap(user => {
-      //       // Logged in
-      //     if (user) {
-      //       return this.afs.doc<User>(`usuarios/${user.uid}`).valueChanges();
-      //     }else {
-      //       // Logged out
-      //       return of(null);
-      //     }
-      //   })
-      // )
   }
   async GoogleAuth() {
     const provider = new auth.GoogleAuthProvider();
-    let credential: any;
-    try {
-      credential = await this.afAuth.auth.signInWithPopup(provider);
-    } catch (err) {
-      console.log('entre al error y regrese:' + err.message)
-      return new Error(err);
-    }
+    let credential = await this.afAuth.auth.signInWithPopup(provider);
     
     return this.updateUserData(credential.user);
   }
   //regresa promise pues es una async/await function
-  private async updateUserData(user): Promise<any>{
+  private async updateUserData(user){
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     
     const data = { 
@@ -73,23 +57,19 @@ export class AuthService {
       nombre: user.displayName, 
       avatar: user.photoURL,
     } 
-    return this._http.post(UrlApi.heroku +'social-login', data , {headers: headers}).subscribe(userData => {
-      if(userData){
-        localStorage.setItem('login', JSON.stringify(userData["usuario"]));
-        this.router.navigate(['/usuario/perfil']);
-      }
-      console.log(userData);
-    });
-
+    return await  this._http.post(UrlApi.heroku +'social-login', data , {headers: headers})
+      .subscribe(userData => {
+        if(userData){
+          const {uid:userId,nombre, avatar, email} = userData["usuario"]
+          const newObjc = {userId, nombre, avatar, email};
+          localStorage.setItem('login', JSON.stringify(newObjc));
+          this.router.navigate(['/usuario/perfil']);
+        }
+      })
   }
+
   private getUserData(uid: string): Observable<any>{
     
-    let tokenUser:string = null;
-
-    // this.getIdToken().then(token => {
-    //   tokenUser = token;
-    // });
-
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
@@ -99,18 +79,14 @@ export class AuthService {
   }
   async signOut() {
     await this.afAuth.auth.signOut();
+    localStorage.removeItem('userToken');
     localStorage.removeItem('login');
     this.router.navigate(['/login']);
   }
-  
-  // async getIdToken():Promise<string>{
-  //   return await this.afAuth.auth.currentUser.getIdToken(true)
-  //     .then(token => {
-  //       return token;
-  //     })
-  //     .catch(err => {
-  //       console.log(err)
-  //       return err
-  //     })
-  // }
+
+  async getIdToken():Promise<string>{
+    let token = await this.afAuth.auth.currentUser.getIdToken(true); 
+    localStorage.setItem('userToken', JSON.stringify(token));
+    return token;
+  }
 }

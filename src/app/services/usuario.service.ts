@@ -8,8 +8,6 @@ import { UrlApi } from "../log/url-api";
 @Injectable()
 export class UsuarioService {
 
-    
-
     public usuario: UsuarioModel;
     constructor(
         private _http: HttpClient,
@@ -52,5 +50,4 @@ export class UsuarioService {
         return this.usuario
     }
 
-    
 }

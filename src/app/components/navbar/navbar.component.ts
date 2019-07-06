@@ -38,7 +38,6 @@ export class NavbarComponent implements OnInit {
   toggleMenu(){
     $("#menu").toggleClass('opened')
     $("#close").toggle()
-    console.log('menu')
   }
 
   cerrarMenu(e){
